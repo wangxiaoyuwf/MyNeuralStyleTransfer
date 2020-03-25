@@ -2,6 +2,7 @@
 
 ### WEEK 1 (1.27-2.2) - WEEK 2 (2.3-2.9)
 1. study the paper, VGG-19
+
 2. find some pre-trained model
 
 
@@ -26,19 +27,27 @@
 
 #### step 1: download the sourcecode and train on ubuntu
 
-1) multi-style
+1. multi-style
+
    This is the muti-style version getting from the github. 
+
    I use it to learn how neural network transfer works.
+
    https://github.com/hmi88/Fast_Multi_Style_Transfer-tensorflow
+
    put it here:
+
    /Users/xiaoyuwang/Desktop/capstone/Multi_style_transfer
 
-2) single-style
-   I use this one on my project.
-   https://github.com/lengstrom/fast-style-transfer
-   put it here:
-   /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer
+2. single-style
 
+   I use this one on my project.
+
+   https://github.com/lengstrom/fast-style-transfer
+
+   put it here:
+
+   /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer
 
 ### WEEK 4 (2.17-2.23)
 #### step 2: get the output_node_names
@@ -101,20 +110,26 @@
 ### WEEK 6(3.2-3.8)
 #### step 4:convert tensorflow .pb model to CoreML using coremltools
 
-1) Install coremltools
+1. Install coremltools
+
    https://pypi.org/project/coremltools/
+
    pip install coremltools==2.0
 
-2）get the txt file of .pb model
+2. get the txt file of .pb model
+
    step3_getpbtxt.sh
    ```python
    python inspect_pb.py wave.pb wave.txt
    ```
    Then we can get the input and output information from the txt file
 
-3) do convert
+3. do convert
+
    /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step5_pb2coreml.py
+
    execute the following script:
+
    step4_pb2coreml.py
    ```python
    # convert .pb to .mlmodel using tfcoreml
@@ -145,7 +160,9 @@
    Then we get the .mlmodel. We can write swift code next step.
 
 #### step 5: quantazition
+
 https://heartbeat.fritz.ai/reducing-coreml2-model-size-by-4x-with-quantization-in-ios12-b1c854651c4
+
 python step5_quanti.py
 
 
