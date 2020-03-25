@@ -1,23 +1,27 @@
 ## My NeuralStyleTransfer
 
 ### WEEK 1 (1.27-2.2) - WEEK 2 (2.3-2.9)
-1) study the paper, VGG-19
-2) find some pre-trained model
+1. study the paper, VGG-19
+2. find some pre-trained model
 
 
 ### WEEK 3 (2.10-2.16)
 #### step 0: set the environment on ubuntu
 
-1) install the NVIDIA driver:
+1. install the NVIDIA driver:
+
    https://blog.csdn.net/u014797226/article/details/79626693
 
-2) The screen resolution becomes smaller after the driver is installed.
+2. The screen resolution becomes smaller after the driver is installed.
+
    https://chenzhen.online/2019/01/13/2019-01-13-%E8%A7%A3%E5%86%B3Ubuntu16.04%E5%AE%89%E8%A3%85Nvidia%E5%90%8E%EF%BC%8C%E5%88%86%E8%BE%A8%E7%8E%87%E6%97%A0%E6%B3%95%E8%B0%83%E6%95%B4%E7%9A%84%E9%97%AE%E9%A2%98/
 
-3) install CUDA and cuNN
+3. install CUDA and cuNN
+
    https://blog.csdn.net/u014797226/article/details/80229887
 
-4) install TensorFlow-gpu 1.0.0, Python 2.7.12, Pillow 3.4.2, scipy 0.18.1, numpy 1.11.2 on ubuntu
+4. install TensorFlow-gpu 1.0.0, Python 2.7.12, Pillow 3.4.2, scipy 0.18.1, numpy 1.11.2 on ubuntu
+
    pip install tensorflow-gpu==1.0.0
 
 #### step 1: download the sourcecode and train on ubuntu
@@ -40,19 +44,25 @@
 #### step 2: get the output_node_names
 
 /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step1_getoutputnode.py
-```
+
 #### step 3:convert ckpt model to .pb using tensorflow tools
 
-1. copy freeze_graph.py from tensorflow dir:
-   * /Users/xiaoyuwang/Library/Python/2.7/lib/python/site-packages/tensorflow/python/tools/freeze_graph.py
-   * put it here:
-   * /Users/xiaoyuwang/Desktop/capstone
+1) copy freeze_graph.py from tensorflow dir:
 
-2. modify it according to:
-   1. modify freeze_graph.py: import meta_graph(from tensorflow.python.framework import meta_graph)
-   2. modify line 91-97: input_graph_def = meta_graph.read_meta_graph_file(input_graph).graph_def
+   /Users/xiaoyuwang/Library/Python/2.7/lib/python/site-packages/tensorflow/python/tools/freeze_graph.py
 
-3. once we get the output_node_names in step 2, and prepare the freeze_graph.py,
+   put it here:
+
+   /Users/xiaoyuwang/Desktop/capstone
+
+2) modify it according to:
+
+   (1) modify freeze_graph.py: import meta_graph(from tensorflow.python.framework import meta_graph)
+
+   (2) modify line 91-97: input_graph_def = meta_graph.read_meta_graph_file(input_graph).graph_def
+
+3) once we get the output_node_names in step 2, and prepare the freeze_graph.py,
+
    execute the shell, step2_ckpt2pb.sh
    ```
    python /Users/xiaoyuwang/Desktop/capstone/freeze_graph.py \
@@ -62,7 +72,6 @@
    --output_node_names=add_37 \
    --input_binary=True
    ```
-```
 
 ### WEEK 5(2.24-3.1) (dosen't work, try to another method, do quantazition with .mlmodel)
 ```diff
