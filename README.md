@@ -40,22 +40,20 @@
 #### step 2: get the output_node_names
 
 /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step1_getoutputnode.py
-
-
+```
 #### step 3:convert ckpt model to .pb using tensorflow tools
 
-1) copy freeze_graph.py from tensorflow dir:
-   /Users/xiaoyuwang/Library/Python/2.7/lib/python/site-packages/tensorflow/python/tools/freeze_graph.py
-   put it here:
-   /Users/xiaoyuwang/Desktop/capstone
+1. copy freeze_graph.py from tensorflow dir:
+   * /Users/xiaoyuwang/Library/Python/2.7/lib/python/site-packages/tensorflow/python/tools/freeze_graph.py
+   * put it here:
+   * /Users/xiaoyuwang/Desktop/capstone
 
-2) modify it according to :
-   (1) modify freeze_graph.py: import meta_graph(from tensorflow.python.framework import meta_graph)
-   (2) modify line 91-97: input_graph_def = meta_graph.read_meta_graph_file(input_graph).graph_def
+2. modify it according to:
+   1. modify freeze_graph.py: import meta_graph(from tensorflow.python.framework import meta_graph)
+   2. modify line 91-97: input_graph_def = meta_graph.read_meta_graph_file(input_graph).graph_def
 
-3) once we get the output_node_names in step 2, and prepare the freeze_graph.py,
-   execute the shell
-   step2_ckpt2pb.sh
+3. once we get the output_node_names in step 2, and prepare the freeze_graph.py,
+   execute the shell, step2_ckpt2pb.sh
    ```
    python /Users/xiaoyuwang/Desktop/capstone/freeze_graph.py \
    --input_graph=./fns.ckpt.meta \
@@ -64,7 +62,7 @@
    --output_node_names=add_37 \
    --input_binary=True
    ```
-
+```
 
 ### WEEK 5(2.24-3.1) (dosen't work, try to another method, do quantazition with .mlmodel)
 ```diff
