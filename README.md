@@ -1,11 +1,11 @@
 # MyNeuralStyleTransfer
 
-WEEK 1 (1.27-2.2) - WEEK 2 (2.3-2.9)
+## WEEK 1 (1.27-2.2) - WEEK 2 (2.3-2.9)
 1) study the paper, VGG-19
 2) find some pre-trained model
 
 
-WEEK 3 (2.10-2.16)
+## WEEK 3 (2.10-2.16)
 step 0: set the environment on ubuntu
 
 1) install the NVIDIA driver:
@@ -36,7 +36,7 @@ step 1: download the sourcecode and train on ubuntu
    /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer
 
 
-WEEK 4 (2.17-2.23)
+## WEEK 4 (2.17-2.23)
 step 2: get the output_node_names
 
 /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step1_getoutputnode.py
@@ -62,8 +62,7 @@ step 3:convert ckpt model to .pb using tensorflow tools
    --input_binary=True
 ==============================TIME LINE================================
 
-/*****************************************
-WEEK 5(2.24-3.1) (dosen't work, try to another method, do quantazition with .mlmodel)
+## WEEK 5(2.24-3.1) (dosen't work, try to another method, do quantazition with .mlmodel)
 step 4:reduce the model size using tensorflow quantazition
 
 1) Installing Bazel on macOS:
@@ -100,14 +99,14 @@ step 4:reduce the model size using tensorflow quantazition
          quantize_nodes
          strip_unused_nodes
          sort_by_execution_order'
-*****************************************/
 
-WEEK 6(3.2-3.8)
+
+## WEEK 6(3.2-3.8)
 step 4:convert tensorflow .pb model to CoreML using coremltools
 
 1) Install coremltools
    https://pypi.org/project/coremltools/
-   pip install coremltools
+   pip install coremltools==2.0
 
 2）get the txt file of .pb model
    python inspect_pb.py wave.pb wave.txt
@@ -116,6 +115,8 @@ step 4:convert tensorflow .pb model to CoreML using coremltools
 3) do convert
    /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step5_pb2coreml.py
    execute the following script:
+   
+   ```python
    # convert .pb to .mlmodel using tfcoreml
    tf_converter.convert(tf_model_path = 'udnie.pb',
                      mlmodel_path = 'udnie.mlmodel',
@@ -139,6 +140,7 @@ step 4:convert tensorflow .pb model to CoreML using coremltools
    output.type.imageType.width = 256
 
    coremltools.utils.save_spec(spec, "udnie.mlmodel")
+   ```
 
    Then we get the .mlmodel. We can write swift code next step.
 
@@ -147,10 +149,10 @@ https://heartbeat.fritz.ai/reducing-coreml2-model-size-by-4x-with-quantization-i
 python step6_quanti.py
 
 
-WEEK 7(3.9-3.15)
+## WEEK 7(3.9-3.15)
 step 7:ios development
 
 https://medium.com/@alexiscreuzot/building-a-neural-style-transfer-app-on-ios-with-pytorch-and-coreml-76e00cd14b28
 
-WEEK 8(3.16-3.22)
+## WEEK 8(3.16-3.22)
 do quantazition
