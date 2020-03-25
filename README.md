@@ -1,12 +1,12 @@
-# MyNeuralStyleTransfer
+## My NeuralStyleTransfer
 
-## WEEK 1 (1.27-2.2) - WEEK 2 (2.3-2.9)
+### WEEK 1 (1.27-2.2) - WEEK 2 (2.3-2.9)
 1) study the paper, VGG-19
 2) find some pre-trained model
 
 
-## WEEK 3 (2.10-2.16)
-step 0: set the environment on ubuntu
+### WEEK 3 (2.10-2.16)
+#### step 0: set the environment on ubuntu
 
 1) install the NVIDIA driver:
    https://blog.csdn.net/u014797226/article/details/79626693
@@ -20,7 +20,7 @@ step 0: set the environment on ubuntu
 4) install TensorFlow-gpu 1.0.0, Python 2.7.12, Pillow 3.4.2, scipy 0.18.1, numpy 1.11.2 on ubuntu
    pip install tensorflow-gpu==1.0.0
 
-step 1: download the sourcecode and train on ubuntu
+#### step 1: download the sourcecode and train on ubuntu
 
 1) multi-style
    This is the muti-style version getting from the github. 
@@ -36,13 +36,13 @@ step 1: download the sourcecode and train on ubuntu
    /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer
 
 
-## WEEK 4 (2.17-2.23)
-step 2: get the output_node_names
+### WEEK 4 (2.17-2.23)
+#### step 2: get the output_node_names
 
 /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step1_getoutputnode.py
 
 
-step 3:convert ckpt model to .pb using tensorflow tools
+#### step 3:convert ckpt model to .pb using tensorflow tools
 
 1) copy freeze_graph.py from tensorflow dir:
    /Users/xiaoyuwang/Library/Python/2.7/lib/python/site-packages/tensorflow/python/tools/freeze_graph.py
@@ -60,62 +60,51 @@ step 3:convert ckpt model to .pb using tensorflow tools
    --output_graph=udnie.pb \
    --output_node_names=add_37 \
    --input_binary=True
-==============================TIME LINE================================
-
-## WEEK 5(2.24-3.1) (dosen't work, try to another method, do quantazition with .mlmodel)
-step 4:reduce the model size using tensorflow quantazition
-
-1) Installing Bazel on macOS:
-   We will use bazel to build the transform_graph sourcecode
-   https://docs.bazel.build/versions/master/install-os-x.html
-
-2）Install the tools that can get the nodes from .pb model
-   https://blog.csdn.net/hh_2018/article/details/82747483
-   bazel build tensorflow/tools/graph_transforms:summarize_graph
-
-3) Get the input and output node from .pb model
-   /Users/xiaoyuwang/tensorflow/bazel-bin/tensorflow/tools/graph_transforms/summarize_graph --in_graph=udniequanti.pb
-
-4) install quantazition tools: transform_graph
-   https://www.cnblogs.com/missidiot/p/9869305.html
-   1) get the tensorflow sourcecode
-      git clone https://github.com/tensorflow/tensorflow.git
-   2) build the sourcecode
-      bazel build tensorflow/tools/graph_transforms:transform_graph
-   3) execute the script:
-      graph_trans=/Users/xiaoyuwang/tensorflow/bazel-bin/tensorflow/tools/graph_transforms/transform_graph
-      $graph_trans --in_graph=udnie.pb \
-      --out_graph=udniequanti.pb \
-      --inputs='X_content' \
-      --outputs='add_37' \
-      --transforms='
-         add_default_attributes
-         strip_unused_nodes(type=float, shape="1, 256, 256, 3")
-         remove_nodes(op=Identity, op=CheckNumerics)
-         fold_constants(ignore_errors=true)
-         fold_batch_norms
-         fold_old_batch_norms
-         quantize_weights
-         quantize_nodes
-         strip_unused_nodes
-         sort_by_execution_order'
 
 
-## WEEK 6(3.2-3.8)
-step 4:convert tensorflow .pb model to CoreML using coremltools
+```diff
+- WEEK 5(2.24-3.1) (dosen't work, try to another method, do quantazition with .mlmodel)
+- step 4:reduce the model size using tensorflow quantazition
+
+- 1) Installing Bazel on macOS:
+-    We will use bazel to build the transform_graph sourcecode
+-    https://docs.bazel.build/versions/master/install-os-x.html
+
+- 2）Install the tools that can get the nodes from .pb model
+-    https://blog.csdn.net/hh_2018/article/details/82747483
+-    bazel build tensorflow/tools/graph_transforms:summarize_graph
+
+- 3) Get the input and output node from .pb model
+-    /Users/xiaoyuwang/tensorflow/bazel-bin/tensorflow/tools/graph_transforms/summarize_graph --in_graph=udniequanti.pb
+
+- 4) install quantazition tools: transform_graph
+-    https://www.cnblogs.com/missidiot/p/9869305.html
+-    1) get the tensorflow sourcecode
+-       git clone https://github.com/tensorflow/tensorflow.git
+-    2) build the sourcecode
+-       bazel build tensorflow/tools/graph_transforms:transform_graph
+-    3) execute the script:
+-       step3_quanti.sh
+```
+
+### WEEK 6(3.2-3.8)
+#### step 4:convert tensorflow .pb model to CoreML using coremltools
 
 1) Install coremltools
    https://pypi.org/project/coremltools/
    pip install coremltools==2.0
 
 2）get the txt file of .pb model
+   step3_getpbtxt.sh
+   ```python
    python inspect_pb.py wave.pb wave.txt
+   ```
    Then we can get the input and output information from the txt file
 
 3) do convert
    /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step5_pb2coreml.py
    execute the following script:
-   
+   step4_pb2coreml.py
    ```python
    # convert .pb to .mlmodel using tfcoreml
    tf_converter.convert(tf_model_path = 'udnie.pb',
@@ -144,15 +133,15 @@ step 4:convert tensorflow .pb model to CoreML using coremltools
 
    Then we get the .mlmodel. We can write swift code next step.
 
-step 5: quantazition
+#### step 5: quantazition
 https://heartbeat.fritz.ai/reducing-coreml2-model-size-by-4x-with-quantization-in-ios12-b1c854651c4
-python step6_quanti.py
+python step5_quanti.py
 
 
-## WEEK 7(3.9-3.15)
-step 7:ios development
+### WEEK 7(3.9-3.15)
+#### step 6:ios development
 
 https://medium.com/@alexiscreuzot/building-a-neural-style-transfer-app-on-ios-with-pytorch-and-coreml-76e00cd14b28
 
-## WEEK 8(3.16-3.22)
+### WEEK 8(3.16-3.22)
 do quantazition
