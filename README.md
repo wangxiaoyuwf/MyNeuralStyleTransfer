@@ -53,7 +53,18 @@
 #### step 2: get the output_node_names
 
 /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step1_getoutputnode.py
-
+```python
+from tensorflow.python import pywrap_tensorflow
+import tensorflow as tf
+# way 1
+ckpt = './fns.ckpt'
+with tf.Session() as sess:
+    saver = tf.train.import_meta_graph(ckpt + '.meta', clear_devices=True)
+    graph_def = tf.get_default_graph().as_graph_def(add_shapes=True)
+    node_list=[n.name for n in graph_def.node]
+    for node in node_list:
+        print (node)
+```
 #### step 3:convert ckpt model to .pb using tensorflow tools
 
 1) copy freeze_graph.py from tensorflow dir:
@@ -120,7 +131,7 @@
 
    step3_getpbtxt.sh
    ```python
-   python inspect_pb.py wave.pb wave.txt
+   python inspect_pb.py udnie.pb udnie.txt
    ```
    Then we can get the input and output information from the txt file
 
@@ -164,7 +175,38 @@
 https://heartbeat.fritz.ai/reducing-coreml2-model-size-by-4x-with-quantization-in-ios12-b1c854651c4
 
 python step5_quanti.py
+```python
+import sys
+import coremltools
+from coremltools.models.neural_network.quantization_utils import *
 
+def quantize(file, bits, functions):
+    """ 
+    Processes a file to quantize it for each bit-per-weight 
+    and function listed.
+    file : Core ML file to process (example : mymodel.mlmodel)
+    bits : Array of bit per weight (example : [16,8,6,4,2,1])
+    functions : Array of distribution functions (example : ["linear", "linear_lut", "kmeans"])
+    """
+    if not file.endswith(".mlmodel"): return # We only consider .mlmodel files
+    model_name = file.split(".")[0]
+    model = coremltools.models.MLModel(file)
+    for function in functions :
+        for bit in bits:
+            print("--------------------------------------------------------------------")
+            print("Processing "+model_name+" for "+str(bit)+"-bits with "+function+" function")
+            sys.stdout.flush()
+            quantized_model = quantize_weights(model, bit, function)
+            sys.stdout.flush()
+            quantized_model.author = "Sherry Wang" 
+            quantized_model.short_description = str(bit)+"-bit per quantized weight, using "+function+"."
+            quantized_model.save(model_name+"_"+function+"_"+str(bit)+".mlmodel")
+
+# Launch quantization
+quantize("udnie.mlmodel", 
+        [16,8,6,2], 
+        ["linear"])
+```
 
 ### WEEK 7(3.9-3.15)
 #### step 6:ios development
