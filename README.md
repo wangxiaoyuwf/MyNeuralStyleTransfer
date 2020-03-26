@@ -52,7 +52,7 @@
 ### WEEK 4 (2.17-2.23)
 #### step 2: get the output_node_names
 
-/Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step1_getoutputnode.py
+/Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/rain_princess/step1_getoutputnode.py
 ```python
 from tensorflow.python import pywrap_tensorflow
 import tensorflow as tf
@@ -88,7 +88,7 @@ with tf.Session() as sess:
    python /Users/xiaoyuwang/Desktop/capstone/freeze_graph.py \
    --input_graph=./fns.ckpt.meta \
    --input_checkpoint=./fns.ckpt \
-   --output_graph=udnie.pb \
+   --output_graph=rain_princess.pb \
    --output_node_names=add_37 \
    --input_binary=True
    ```
@@ -106,7 +106,7 @@ with tf.Session() as sess:
 -    bazel build tensorflow/tools/graph_transforms:summarize_graph
 
 - 3) Get the input and output node from .pb model
--    /Users/xiaoyuwang/tensorflow/bazel-bin/tensorflow/tools/graph_transforms/summarize_graph --in_graph=udniequanti.pb
+-    /Users/xiaoyuwang/tensorflow/bazel-bin/tensorflow/tools/graph_transforms/summarize_graph --in_graph=rain_princess_quanti.pb
 
 - 4) install quantazition tools: transform_graph
 -    https://www.cnblogs.com/missidiot/p/9869305.html
@@ -143,6 +143,10 @@ with tf.Session() as sess:
 
    step4_pb2coreml.py
    ```python
+   import tfcoreml as tf_converter
+   import coremltools
+   import coremltools.proto.FeatureTypes_pb2 as ft 
+
    # convert .pb to .mlmodel using tfcoreml
    tf_converter.convert(tf_model_path = 'rain_princess.pb',
                      mlmodel_path = 'rain_princess.mlmodel',
