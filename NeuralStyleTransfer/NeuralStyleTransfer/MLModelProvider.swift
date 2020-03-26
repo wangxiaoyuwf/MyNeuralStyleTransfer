@@ -13,7 +13,7 @@ import CoreML
 enum AllModel : String, CaseIterable {
     
     case la_muse = "FNS-La-Muse"
-    case rain_princess = "udnie_linear_8"
+    case rain_princess = "rain_princess"
     
     func modelProvider() throws -> MLModelProvider {
         guard let url = Bundle.main.url(forResource: self.rawValue, withExtension:"mlmodelc") else {
@@ -35,12 +35,12 @@ enum AllModel : String, CaseIterable {
     }
 }
 
-/// Encapsulation class for our NST models
+// Encapsulation class for our Neural Style Transfer models
 @available(macOS 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *)
 class MLModelProvider {
     var model: MLModel
     
-    // The variable parameters for our NST models
+    // The variable parameters for our Neural Style Transfer models
     var inputName: String
     var outputName: String
     var pixelBufferSize: CGSize
@@ -96,7 +96,7 @@ class MLModelProvider {
     }
 }
 
-/// Model Prediction Input Type
+// Model Prediction Input Type
 @available(macOS 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *)
 class MLModelProviderInput : MLFeatureProvider {
     

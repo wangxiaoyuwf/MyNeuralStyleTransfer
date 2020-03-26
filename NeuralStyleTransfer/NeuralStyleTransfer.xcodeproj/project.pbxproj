@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F0ABBF7E242B139200084C40 /* FNS-La-Muse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0ABBF7D242B139200084C40 /* FNS-La-Muse.mlmodel */; };
-		F0ABBF80242B13AE00084C40 /* udnie_linear_8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0ABBF7F242B13AE00084C40 /* udnie_linear_8.mlmodel */; };
 		F0E23382241B3204001C2A50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E23381241B3204001C2A50 /* AppDelegate.swift */; };
 		F0E23384241B3204001C2A50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E23383241B3204001C2A50 /* SceneDelegate.swift */; };
 		F0E23386241B3204001C2A50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E23385241B3204001C2A50 /* ViewController.swift */; };
@@ -21,6 +20,11 @@
 		F0E233B8241D547B001C2A50 /* ErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E233B7241D547B001C2A50 /* ErrorUtil.swift */; };
 		F0E233BA241D549B001C2A50 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E233B9241D549B001C2A50 /* UIImage+Resize.swift */; };
 		F0E233BC241D54BB001C2A50 /* UIImage+CoreML.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E233BB241D54BB001C2A50 /* UIImage+CoreML.swift */; };
+		F0E6FD6C242CFF0700533F5C /* rain_princess.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0E6FD6B242CFF0700533F5C /* rain_princess.mlmodel */; };
+		F0E6FD6E242CFF4900533F5C /* rain_princess_linear_16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0E6FD6D242CFF4900533F5C /* rain_princess_linear_16.mlmodel */; };
+		F0E6FD70242CFF5800533F5C /* rain_princess_linear_8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0E6FD6F242CFF5800533F5C /* rain_princess_linear_8.mlmodel */; };
+		F0E6FD76242D069700533F5C /* la_muse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0E6FD75242D069700533F5C /* la_muse.mlmodel */; };
+		F0E6FD78242D168100533F5C /* rain_princess_linear_4.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0E6FD77242D168100533F5C /* rain_princess_linear_4.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +46,6 @@
 
 /* Begin PBXFileReference section */
 		F0ABBF7D242B139200084C40 /* FNS-La-Muse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "FNS-La-Muse.mlmodel"; sourceTree = "<group>"; };
-		F0ABBF7F242B13AE00084C40 /* udnie_linear_8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = udnie_linear_8.mlmodel; sourceTree = "<group>"; };
 		F0E2337E241B3204001C2A50 /* NeuralStyleTransfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeuralStyleTransfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E23381241B3204001C2A50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0E23383241B3204001C2A50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +64,11 @@
 		F0E233B7241D547B001C2A50 /* ErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUtil.swift; sourceTree = "<group>"; };
 		F0E233B9241D549B001C2A50 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		F0E233BB241D54BB001C2A50 /* UIImage+CoreML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CoreML.swift"; sourceTree = "<group>"; };
+		F0E6FD6B242CFF0700533F5C /* rain_princess.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rain_princess.mlmodel; sourceTree = "<group>"; };
+		F0E6FD6D242CFF4900533F5C /* rain_princess_linear_16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rain_princess_linear_16.mlmodel; sourceTree = "<group>"; };
+		F0E6FD6F242CFF5800533F5C /* rain_princess_linear_8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rain_princess_linear_8.mlmodel; sourceTree = "<group>"; };
+		F0E6FD75242D069700533F5C /* la_muse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = la_muse.mlmodel; sourceTree = "<group>"; };
+		F0E6FD77242D168100533F5C /* rain_princess_linear_4.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rain_princess_linear_4.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +119,12 @@
 		F0E23380241B3204001C2A50 /* NeuralStyleTransfer */ = {
 			isa = PBXGroup;
 			children = (
+				F0E6FD75242D069700533F5C /* la_muse.mlmodel */,
+				F0E6FD6B242CFF0700533F5C /* rain_princess.mlmodel */,
+				F0E6FD6D242CFF4900533F5C /* rain_princess_linear_16.mlmodel */,
+				F0E6FD6F242CFF5800533F5C /* rain_princess_linear_8.mlmodel */,
+				F0E6FD77242D168100533F5C /* rain_princess_linear_4.mlmodel */,
 				F0ABBF7D242B139200084C40 /* FNS-La-Muse.mlmodel */,
-				F0ABBF7F242B13AE00084C40 /* udnie_linear_8.mlmodel */,
 				F0E23381241B3204001C2A50 /* AppDelegate.swift */,
 				F0E23383241B3204001C2A50 /* SceneDelegate.swift */,
 				F0E23385241B3204001C2A50 /* ViewController.swift */,
@@ -277,13 +289,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0E6FD70242CFF5800533F5C /* rain_princess_linear_8.mlmodel in Sources */,
 				F0E23386241B3204001C2A50 /* ViewController.swift in Sources */,
 				F0E233B6241D5447001C2A50 /* MLModelProvider.swift in Sources */,
 				F0E233BC241D54BB001C2A50 /* UIImage+CoreML.swift in Sources */,
+				F0E6FD6E242CFF4900533F5C /* rain_princess_linear_16.mlmodel in Sources */,
 				F0ABBF7E242B139200084C40 /* FNS-La-Muse.mlmodel in Sources */,
 				F0E233B8241D547B001C2A50 /* ErrorUtil.swift in Sources */,
-				F0ABBF80242B13AE00084C40 /* udnie_linear_8.mlmodel in Sources */,
 				F0E23382241B3204001C2A50 /* AppDelegate.swift in Sources */,
+				F0E6FD6C242CFF0700533F5C /* rain_princess.mlmodel in Sources */,
+				F0E6FD78242D168100533F5C /* rain_princess_linear_4.mlmodel in Sources */,
+				F0E6FD76242D069700533F5C /* la_muse.mlmodel in Sources */,
 				F0E23384241B3204001C2A50 /* SceneDelegate.swift in Sources */,
 				F0E233BA241D549B001C2A50 /* UIImage+Resize.swift in Sources */,
 			);

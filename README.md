@@ -131,28 +131,28 @@ with tf.Session() as sess:
 
    step3_getpbtxt.sh
    ```python
-   python inspect_pb.py udnie.pb udnie.txt
+   python inspect_pb.py rain_princess.pb rain_princess.txt
    ```
    Then we can get the input and output information from the txt file
 
 3. do convert
 
-   /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/udnie/step5_pb2coreml.py
+   /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/models/rain_princess/step5_pb2coreml.py
 
    execute the following script:
 
    step4_pb2coreml.py
    ```python
    # convert .pb to .mlmodel using tfcoreml
-   tf_converter.convert(tf_model_path = 'udnie.pb',
-                     mlmodel_path = 'udnie.mlmodel',
+   tf_converter.convert(tf_model_path = 'rain_princess.pb',
+                     mlmodel_path = 'rain_princess.mlmodel',
                      input_name_shape_dict={'X_content:0': [1, 256, 256, 3]},
                      output_feature_names = ['add_37:0'])
    Then we get the .mlmodel file
    But when we open the .mlmodel by xcode, we will find that the inputs type and the outputs types are MultiArray. 
    Unfortunately, we can't use it on the swift project. So we need to convert it using the following script:
    # convert MLMultiArray to images
-   spec = coremltools.utils.load_spec("udnie.mlmodel")
+   spec = coremltools.utils.load_spec("rain_princess.mlmodel")
    # inputs
    input = spec.description.input[0]
    input.type.imageType.colorSpace = ft.ImageFeatureType.RGB
@@ -165,7 +165,7 @@ with tf.Session() as sess:
    output.type.imageType.height = 256
    output.type.imageType.width = 256
 
-   coremltools.utils.save_spec(spec, "udnie.mlmodel")
+   coremltools.utils.save_spec(spec, "rain_princess.mlmodel")
    ```
 
    Then we get the .mlmodel. We can write swift code next step.
@@ -203,15 +203,14 @@ def quantize(file, bits, functions):
             quantized_model.save(model_name+"_"+function+"_"+str(bit)+".mlmodel")
 
 # Launch quantization
-quantize("udnie.mlmodel", 
+quantize("rain_princess.mlmodel", 
         [16,8,6,2], 
         ["linear"])
 ```
 
 ### WEEK 7(3.9-3.15)
 #### step 6:ios development
-
-https://medium.com/@alexiscreuzot/building-a-neural-style-transfer-app-on-ios-with-pytorch-and-coreml-76e00cd14b28
+Demo
 
 ### WEEK 8(3.16-3.22)
 do quantazition
