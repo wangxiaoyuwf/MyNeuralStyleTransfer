@@ -214,7 +214,22 @@ quantize("rain_princess.mlmodel",
 
 ### WEEK 7(3.9-3.15)
 #### step 6:ios development
-Demo
+Start IOS development : do a Demo
 
 ### WEEK 8(3.16-3.22)
 do quantazition
+
+### WEEK 9(3.23-3.29)
+IOS development : Complete the image transfer function
+
+### WEEK 10(3.30-4.5)
+IOS development : Re-layout UI
+
+### WEEK 11(4.6-4.12)
+IOS development : Bottom Different Style's Table function
+
+### WEEK 12(4.13-4.19)
+IOS development : Share function
+
+
+

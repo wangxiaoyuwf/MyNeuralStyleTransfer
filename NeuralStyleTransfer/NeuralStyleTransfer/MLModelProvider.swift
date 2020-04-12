@@ -12,8 +12,12 @@ import CoreML
 //xiaoyu: define all of the models
 enum AllModel : String, CaseIterable {
     
-    case la_muse = "FNS-La-Muse"
-    case rain_princess = "rain_princess"
+    case princess = "rain_princess"
+    case wave = "wave"
+    case scream = "FNS-The-Scream"
+    case muse = "FNS-La-Muse"
+    case udnie = "FNS-Udnie"
+    case candy = "FNS-Candy"
     
     func modelProvider() throws -> MLModelProvider {
         guard let url = Bundle.main.url(forResource: self.rawValue, withExtension:"mlmodelc") else {
@@ -21,16 +25,36 @@ enum AllModel : String, CaseIterable {
         }
         
         switch self {
-        case .la_muse:
+        case .princess:
+            return try MLModelProvider(contentsOf: url,
+                                   pixelBufferSize: CGSize(width:256, height:256),
+                                   inputName: "X_content__0",
+                                   outputName: "add_37__0")
+        case .wave:
+        return try MLModelProvider(contentsOf: url,
+                               pixelBufferSize: CGSize(width:256, height:256),
+                               inputName: "X_content__0",
+                               outputName: "add_37__0")
+        case .scream:
             return try MLModelProvider(contentsOf: url,
                                        pixelBufferSize: CGSize(width:720, height:720),
                                        inputName: "inputImage",
                                        outputName: "outputImage")
-        case .rain_princess:
-            return try MLModelProvider(contentsOf: url,
-                                       pixelBufferSize: CGSize(width:256, height:256),
-                                       inputName: "X_content__0",
-                                       outputName: "add_37__0")
+        case .muse:
+        return try MLModelProvider(contentsOf: url,
+                                   pixelBufferSize: CGSize(width:720, height:720),
+                                   inputName: "inputImage",
+                                   outputName: "outputImage")
+        case .udnie:
+        return try MLModelProvider(contentsOf: url,
+                                   pixelBufferSize: CGSize(width:720, height:720),
+                                   inputName: "inputImage",
+                                   outputName: "outputImage")
+        case .candy:
+        return try MLModelProvider(contentsOf: url,
+                                   pixelBufferSize: CGSize(width:720, height:720),
+                                   inputName: "inputImage",
+                                   outputName: "outputImage")
         }
     }
 }
