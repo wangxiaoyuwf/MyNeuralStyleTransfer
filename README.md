@@ -229,8 +229,8 @@ IOS development : Re-layout UI
 IOS development : Bottom Different Style's Table function
 
 ### WEEK 12(4.13-4.19)
-IOS development : Save Function(Save image to iphone)
-
+IOS development : Save and Share Function(Save image to iphone and Share)
+Social Frame - do Share Function
 
 ***
 ***
@@ -250,9 +250,7 @@ IOS development : Charge Function
 Fake now(I may do the real function in the future)
 
 ### WEEK 15(5.4-5.10)
-IOS development : Share Function
-
-Social Frame - do Share Function
+Debug
 
 ### WEEK 16(5.11-5.17)
 Debug

@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet private var segmentedControl: UISegmentedControl!
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var loader: UIActivityIndicatorView!
-    @IBOutlet private var applyButton: UIButton!
     
     //xiaoyu: selected model
     var selectedModel: AllModel = .princess
@@ -29,7 +28,6 @@ class ViewController: UIViewController {
     
     var isProcessing : Bool = false {
         didSet {
-//            self.applyButton.isEnabled = !isProcessing
             self.isProcessing ? self.loader.startAnimating() : self.loader.stopAnimating()
             // xiaoyu: show/hide with the loader icon
             if(self.isProcessing){
@@ -37,13 +35,6 @@ class ViewController: UIViewController {
             }else{
                 loader.stopAnimating()
             }
-            
-//            UIView.animate(withDuration: 0.3) {
-//                self.isProcessing
-//                    ? self.applyButton.setTitle("Processing...", for: .normal)
-//                    : self.applyButton.setTitle("Apply Style", for: .normal)
-//                self.view.layoutIfNeeded()
-//            }
         }
     }
     
@@ -56,18 +47,6 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //xiaoyu: do init
         self.isProcessing = false
-//        CollectionView.delegate = self
-//        CollectionView.dataSource = self
-    }
-    
-    /*
-     xiaoyu: show error
-     **/
-    func showError(_ error: Error) {
-        self.applyButton.setTitle(error.localizedDescription, for: .normal)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            self.applyButton.setTitle("Apply Style", for: .normal)
-        }
     }
         
     /*
@@ -139,7 +118,7 @@ class ViewController: UIViewController {
      **/
     func applyStyle() {
         guard let image = self.imageView.image else {
-            print("Select an image first")
+            print("Select an image first!")
             return
         }
 
@@ -149,9 +128,9 @@ class ViewController: UIViewController {
             if let filteredImage = filteredImage {
                 self.imageView.image = filteredImage
             } else if let error = error {
-                self.showError(error)
+                print(error)
             } else {
-                self.showError(ErrorUtil.unknown)
+                print(ErrorUtil.unknown)
             }
         }
     }
