@@ -229,7 +229,27 @@ IOS development : Re-layout UI
 IOS development : Bottom Different Style's Table function
 
 ### WEEK 12(4.13-4.19)
-IOS development : Share function
+IOS development : Save Function(Save image to iphone)
+
+```diff
+### WEEK 13(4.20-4.26)
+IOS development : Download Model Function
+Put some models on Clould Server, users can download from the Cloud
+NodeJs - do Server
+
+### WEEK 14(4.27-5.3)
+IOS development : Charge Function
+Fake now(I may do the real function in the future)
+
+### WEEK 15(5.4-5.10)
+IOS development : Share Function
+Social Frame - do Share Function
+
+### WEEK 16(5.11-5.17)
+Debug
+```
+
+
 
 
 
