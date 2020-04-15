@@ -245,7 +245,7 @@ Put some models on Clould Server, users can download from the Cloud
 NodeJs - do Server
 
 ### WEEK 14(4.27-5.3)
-IOS development : Charge Function
+IOS development : Payment Function
 
 Fake now(I may do the real function in the future)
 
