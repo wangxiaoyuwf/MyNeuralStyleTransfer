@@ -231,7 +231,9 @@ IOS development : Bottom Different Style's Table function
 ### WEEK 12(4.13-4.19)
 IOS development : Save Function(Save image to iphone)
 
-<span style="color: green">
+
+***
+
 ### WEEK 13(4.20-4.26)
 IOS development : Download Model Function
 Put some models on Clould Server, users can download from the Cloud
@@ -247,7 +249,6 @@ Social Frame - do Share Function
 
 ### WEEK 16(5.11-5.17)
 Debug
-</span>
 
 
 
