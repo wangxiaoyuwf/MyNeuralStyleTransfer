@@ -228,10 +228,11 @@ IOS development : Re-layout UI
 ### WEEK 11(4.6-4.12)
 IOS development : Bottom Different Style's Table function
 
-### WEEK 12(4.13-4.19)
+### WEEK 12(4.13-4.19)(THIS WEEK)
 IOS development : Save Function(Save image to iphone)
 
 
+***
 ***
 
 ### WEEK 13(4.20-4.26)
