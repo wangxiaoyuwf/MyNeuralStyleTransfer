@@ -239,15 +239,19 @@ IOS development : Save Function(Save image to iphone)
 
 ### WEEK 13(4.20-4.26)
 IOS development : Download Model Function
+
 Put some models on Clould Server, users can download from the Cloud
+
 NodeJs - do Server
 
 ### WEEK 14(4.27-5.3)
 IOS development : Charge Function
+
 Fake now(I may do the real function in the future)
 
 ### WEEK 15(5.4-5.10)
 IOS development : Share Function
+
 Social Frame - do Share Function
 
 ### WEEK 16(5.11-5.17)
