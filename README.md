@@ -230,7 +230,7 @@ IOS development : Bottom Different Style's Table function
 
 ### WEEK 12(4.13-4.19)
 IOS development : Save and Share Function(Save image to iphone and Share)
-Social Frame - do Share Function
+Technique : Social Frame
 
 ***
 ***
@@ -242,7 +242,7 @@ IOS development : Download Model Function
 
 Put some models on Clould Server, users can download from the Cloud
 
-NodeJs - do Server
+Technique : NodeJs
 
 ### WEEK 14(4.27-5.3)
 IOS development : Payment Function
