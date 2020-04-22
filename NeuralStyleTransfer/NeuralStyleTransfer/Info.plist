@@ -19,9 +19,11 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
     <key>NSCameraUsageDescription</key>
-    <string>Camera</string>
+    <string>Open Camera</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Photo from Library</string>
+    <string>Import Photo from Library</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>To Albume</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

@@ -206,5 +206,22 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         self.selectedModel = AllModel.allCases[indexPath.item - 1]
         applyStyle()
+        let alert = UIAlertController(title: "action", message: "please choose one action", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style:.default, handler: nil)
+        let save = UIAlertAction(title: "Save", style: .default, handler: {
+            ACTION in
+            self.saveImage()
+        })
+        let share = UIAlertAction(title: "Share", style: .default, handler: nil)
+        
+        alert.addAction(save)
+        alert.addAction(share)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveImage(){
+        let image = self.imageView.image!
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 }
