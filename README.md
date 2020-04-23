@@ -234,17 +234,12 @@ Save
 Share
 Cancel
 
-***
-***
-***
-***
-
-### WEEK 13(4.20-4.26)
+***### WEEK 13(4.20-4.26)
 IOS development : Download Model Function
 
 Put some models on Clould Server, users can download from the Cloud
 
-Technique : NodeJs
+Technique : NodeJs***
 
 ### WEEK 14(4.27-5.3)
 IOS development : Purchase Function
