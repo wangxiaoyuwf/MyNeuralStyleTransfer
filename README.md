@@ -230,8 +230,11 @@ IOS development : Style Selector on Bottom
 
 ### WEEK 12(4.13-4.19)
 IOS development : Save and Share Function
+
 Save
+
 Share
+
 Cancel
 
 ### WEEK 13(4.20-4.26)
