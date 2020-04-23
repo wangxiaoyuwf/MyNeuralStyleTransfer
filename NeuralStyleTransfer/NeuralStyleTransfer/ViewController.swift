@@ -7,29 +7,39 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class ViewController: UIViewController {
     typealias FilteringCompletion = ((UIImage?, Error?) -> ())
     
+    // style selector view on the bottom
     @IBOutlet weak var CollectionView: UICollectionView!
-    @IBOutlet private var segmentedControl: UISegmentedControl!
+    
+    // show the image on the main view
     @IBOutlet private var imageView: UIImageView!
+    
+    // the loader when applying the style for image
     @IBOutlet private var loader: UIActivityIndicatorView!
     
-    //xiaoyu: selected model
+    // selected model
     var selectedModel: AllModel = .princess
-
+    
+    // select image from the file system
     var imagePicker = UIImagePickerController()
-
+    
+    // take an image by camera
     var cameraPicker = UIImagePickerController()
 
-    //xiaoyu: init default image
+    // init default image
     var selectedImage = UIImage(named: "chicago")
     
+    // items for styles
+    var items = ["Original", "Rain Princess", "Wave", "Scream", "Muse", "Udnie", "Candy"]
+    
+    // if the style is applying, if true, show the loader, else hide the loader
     var isProcessing : Bool = false {
         didSet {
             self.isProcessing ? self.loader.startAnimating() : self.loader.stopAnimating()
-            // xiaoyu: show/hide with the loader icon
             if(self.isProcessing){
                 loader.startAnimating()
             }else{
@@ -38,19 +48,19 @@ class ViewController: UIViewController {
         }
     }
     
-    var items = ["Original", "Rain Princess", "Wave", "Scream", "Muse", "Udnie", "Candy"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
        
+    /*
+     do init actions
+     **/
     override func viewWillAppear(_ animated: Bool) {
-        //xiaoyu: do init
         self.isProcessing = false
     }
-        
+    
     /*
-     xiaoyu: do process, CoreML
+     do process : coreml
      **/
     func process(input: UIImage, completion: @escaping FilteringCompletion) {
         var outputImage: UIImage?
@@ -121,10 +131,11 @@ class ViewController: UIViewController {
             print("Select an image first!")
             return
         }
-
         self.isProcessing = true
         self.process(input: image) { filteredImage, error in
             self.isProcessing = false
+            // show the pop view on the bottom
+            self.showPopView()
             if let filteredImage = filteredImage {
                 self.imageView.image = filteredImage
             } else if let error = error {
@@ -194,11 +205,12 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         default:
             cell.lbl.text = ""
         }
-
         return cell
     }
 
-    // for UICollectionViewDelegate
+    /*
+     for UICollectionViewDelegate
+     **/
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.imageView.image = self.selectedImage
         if(indexPath.item == 0){
@@ -206,22 +218,56 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         self.selectedModel = AllModel.allCases[indexPath.item - 1]
         applyStyle()
+    }
+    
+    /*
+     show popview on the bottom when the process of applying style was finished
+     **/
+    func showPopView(){
         let alert = UIAlertController(title: "action", message: "please choose one action", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style:.default, handler: nil)
         let save = UIAlertAction(title: "Save", style: .default, handler: {
             ACTION in
             self.saveImage()
         })
-        let share = UIAlertAction(title: "Share", style: .default, handler: nil)
-        
+        let share = UIAlertAction(title: "Share", style: .default, handler: {
+            ACTION in
+            self.shareSocialMedia()
+        })
         alert.addAction(save)
         alert.addAction(share)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
     }
     
+    /*
+     save image action
+     **/
     func saveImage(){
         let image = self.imageView.image!
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        self.view.makeToast("Save Image Success!", duration: 3.0, position: .center)
     }
+    
+    /*
+     share to the social media action
+     **/
+    func shareSocialMedia(){
+        // save image first when you share the image
+        saveImage()
+        
+        // share function
+        let activityVC = UIActivityViewController(activityItems: [self.imageView.image!, "Share Image"], applicationActivities: nil)
+        activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if error != nil {
+                self.view.makeToast("Error:\(error!.localizedDescription)")
+                return
+            }
+            if completed {
+                self.view.makeToast("Share Successful!")
+            }
+        }
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
 }

@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A42798DB3632426F038F5B5 /* libPods-NeuralStyleTransfer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA309CC2F8289D744764216C /* libPods-NeuralStyleTransfer.a */; };
 		F058863E2435303500905B2A /* FNS-The-Scream.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F058863D2435303500905B2A /* FNS-The-Scream.mlmodel */; };
 		F05886402436E06300905B2A /* StyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F058863F2436E06300905B2A /* StyleCollectionViewCell.swift */; };
 		F0588642243815F100905B2A /* FNS-Udnie.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0588641243815F000905B2A /* FNS-Udnie.mlmodel */; };
@@ -46,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D3DE4CE9A145F7842026C5C /* Pods-NeuralStyleTransfer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeuralStyleTransfer.debug.xcconfig"; path = "Target Support Files/Pods-NeuralStyleTransfer/Pods-NeuralStyleTransfer.debug.xcconfig"; sourceTree = "<group>"; };
+		C87F1A4183C08816D73DBBCD /* Pods-NeuralStyleTransfer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeuralStyleTransfer.release.xcconfig"; path = "Target Support Files/Pods-NeuralStyleTransfer/Pods-NeuralStyleTransfer.release.xcconfig"; sourceTree = "<group>"; };
+		CA309CC2F8289D744764216C /* libPods-NeuralStyleTransfer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeuralStyleTransfer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F058863D2435303500905B2A /* FNS-The-Scream.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "FNS-The-Scream.mlmodel"; sourceTree = "<group>"; };
 		F058863F2436E06300905B2A /* StyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		F0588641243815F000905B2A /* FNS-Udnie.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "FNS-Udnie.mlmodel"; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A42798DB3632426F038F5B5 /* libPods-NeuralStyleTransfer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED83A96F8D7E710E7C4359C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA309CC2F8289D744764216C /* libPods-NeuralStyleTransfer.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F0E23375241B3204001C2A50 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +118,8 @@
 				F0E23397241B3207001C2A50 /* NeuralStyleTransferTests */,
 				F0E233A2241B3207001C2A50 /* NeuralStyleTransferUITests */,
 				F0E2337F241B3204001C2A50 /* Products */,
+				F2E0D9DD9B5FF107F27A0B09 /* Pods */,
+				ED83A96F8D7E710E7C4359C1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +176,15 @@
 			path = NeuralStyleTransferUITests;
 			sourceTree = "<group>";
 		};
+		F2E0D9DD9B5FF107F27A0B09 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D3DE4CE9A145F7842026C5C /* Pods-NeuralStyleTransfer.debug.xcconfig */,
+				C87F1A4183C08816D73DBBCD /* Pods-NeuralStyleTransfer.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +192,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0E233A8241B3207001C2A50 /* Build configuration list for PBXNativeTarget "NeuralStyleTransfer" */;
 			buildPhases = (
+				D3EE1BB9404B92E561C55D49 /* [CP] Check Pods Manifest.lock */,
 				F0E2337A241B3204001C2A50 /* Sources */,
 				F0E2337B241B3204001C2A50 /* Frameworks */,
 				F0E2337C241B3204001C2A50 /* Resources */,
@@ -286,6 +311,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D3EE1BB9404B92E561C55D49 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeuralStyleTransfer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F0E2337A241B3204001C2A50 /* Sources */ = {
@@ -476,8 +526,10 @@
 		};
 		F0E233A9241B3207001C2A50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D3DE4CE9A145F7842026C5C /* Pods-NeuralStyleTransfer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32A3FN79BD;
 				INFOPLIST_FILE = NeuralStyleTransfer/Info.plist;
@@ -487,6 +539,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.hofstra.xiaoyu.NeuralStyleTransfer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -494,8 +547,10 @@
 		};
 		F0E233AA241B3207001C2A50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C87F1A4183C08816D73DBBCD /* Pods-NeuralStyleTransfer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32A3FN79BD;
 				INFOPLIST_FILE = NeuralStyleTransfer/Info.plist;
@@ -505,6 +560,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.hofstra.xiaoyu.NeuralStyleTransfer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

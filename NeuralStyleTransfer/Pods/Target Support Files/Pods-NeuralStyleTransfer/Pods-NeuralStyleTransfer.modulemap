@@ -1,0 +1,6 @@
+module Pods_NeuralStyleTransfer {
+  umbrella header "Pods-NeuralStyleTransfer-umbrella.h"
+
+  export *
+  module * { export * }
+}
