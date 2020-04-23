@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,8 @@
 		F05886402436E06300905B2A /* StyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F058863F2436E06300905B2A /* StyleCollectionViewCell.swift */; };
 		F0588642243815F100905B2A /* FNS-Udnie.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0588641243815F000905B2A /* FNS-Udnie.mlmodel */; };
 		F0588644243815FD00905B2A /* FNS-Candy.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0588643243815FD00905B2A /* FNS-Candy.mlmodel */; };
-		F071C749243F9304003D49F3 /* wave.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F071C748243F9304003D49F3 /* wave.mlmodel */; };
+		F0893AE1245145EA00C26CFE /* StarryNight.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0893AE0245145EA00C26CFE /* StarryNight.mlmodel */; };
+		F0893AE32451463E00C26CFE /* Pointillism.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0893AE22451463E00C26CFE /* Pointillism.mlmodel */; };
 		F0ABBF7E242B139200084C40 /* FNS-La-Muse.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0ABBF7D242B139200084C40 /* FNS-La-Muse.mlmodel */; };
 		F0E23382241B3204001C2A50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E23381241B3204001C2A50 /* AppDelegate.swift */; };
 		F0E23384241B3204001C2A50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E23383241B3204001C2A50 /* SceneDelegate.swift */; };
@@ -26,7 +27,6 @@
 		F0E233B8241D547B001C2A50 /* ErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E233B7241D547B001C2A50 /* ErrorUtil.swift */; };
 		F0E233BA241D549B001C2A50 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E233B9241D549B001C2A50 /* UIImage+Resize.swift */; };
 		F0E233BC241D54BB001C2A50 /* UIImage+CoreML.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E233BB241D54BB001C2A50 /* UIImage+CoreML.swift */; };
-		F0E6FD6C242CFF0700533F5C /* rain_princess.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = F0E6FD6B242CFF0700533F5C /* rain_princess.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,8 @@
 		F058863F2436E06300905B2A /* StyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		F0588641243815F000905B2A /* FNS-Udnie.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "FNS-Udnie.mlmodel"; sourceTree = "<group>"; };
 		F0588643243815FD00905B2A /* FNS-Candy.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "FNS-Candy.mlmodel"; sourceTree = "<group>"; };
-		F071C748243F9304003D49F3 /* wave.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = wave.mlmodel; sourceTree = "<group>"; };
+		F0893AE0245145EA00C26CFE /* StarryNight.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = StarryNight.mlmodel; path = ../../../../Desktop/capstone/NSTDemo/NSTDemo/StarryNight.mlmodel; sourceTree = "<group>"; };
+		F0893AE22451463E00C26CFE /* Pointillism.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Pointillism.mlmodel; path = ../../../../Desktop/capstone/NSTDemo/NSTDemo/Pointillism.mlmodel; sourceTree = "<group>"; };
 		F0ABBF7D242B139200084C40 /* FNS-La-Muse.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "FNS-La-Muse.mlmodel"; sourceTree = "<group>"; };
 		F0E2337E241B3204001C2A50 /* NeuralStyleTransfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeuralStyleTransfer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E23381241B3204001C2A50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		F0E233B7241D547B001C2A50 /* ErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUtil.swift; sourceTree = "<group>"; };
 		F0E233B9241D549B001C2A50 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		F0E233BB241D54BB001C2A50 /* UIImage+CoreML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CoreML.swift"; sourceTree = "<group>"; };
-		F0E6FD6B242CFF0700533F5C /* rain_princess.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = rain_princess.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,12 +136,12 @@
 		F0E23380241B3204001C2A50 /* NeuralStyleTransfer */ = {
 			isa = PBXGroup;
 			children = (
+				F0893AE22451463E00C26CFE /* Pointillism.mlmodel */,
+				F0893AE0245145EA00C26CFE /* StarryNight.mlmodel */,
 				F0588641243815F000905B2A /* FNS-Udnie.mlmodel */,
 				F0588643243815FD00905B2A /* FNS-Candy.mlmodel */,
 				F058863D2435303500905B2A /* FNS-The-Scream.mlmodel */,
-				F0E6FD6B242CFF0700533F5C /* rain_princess.mlmodel */,
 				F0ABBF7D242B139200084C40 /* FNS-La-Muse.mlmodel */,
-				F071C748243F9304003D49F3 /* wave.mlmodel */,
 				F0E23381241B3204001C2A50 /* AppDelegate.swift */,
 				F0E23383241B3204001C2A50 /* SceneDelegate.swift */,
 				F0E23385241B3204001C2A50 /* ViewController.swift */,
@@ -349,12 +349,12 @@
 				F0E233B6241D5447001C2A50 /* MLModelProvider.swift in Sources */,
 				F0E233BC241D54BB001C2A50 /* UIImage+CoreML.swift in Sources */,
 				F0ABBF7E242B139200084C40 /* FNS-La-Muse.mlmodel in Sources */,
-				F071C749243F9304003D49F3 /* wave.mlmodel in Sources */,
+				F0893AE1245145EA00C26CFE /* StarryNight.mlmodel in Sources */,
 				F0E233B8241D547B001C2A50 /* ErrorUtil.swift in Sources */,
 				F0E23382241B3204001C2A50 /* AppDelegate.swift in Sources */,
-				F0E6FD6C242CFF0700533F5C /* rain_princess.mlmodel in Sources */,
 				F0E23384241B3204001C2A50 /* SceneDelegate.swift in Sources */,
 				F0E233BA241D549B001C2A50 /* UIImage+Resize.swift in Sources */,
+				F0893AE32451463E00C26CFE /* Pointillism.mlmodel in Sources */,
 				F058863E2435303500905B2A /* FNS-The-Scream.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

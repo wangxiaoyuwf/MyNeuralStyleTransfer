@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet private var loader: UIActivityIndicatorView!
     
     // selected model
-    var selectedModel: AllModel = .princess
+    var selectedModel: AllModel = .pointllism
     
     // select image from the file system
     var imagePicker = UIImagePickerController()
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     var selectedImage = UIImage(named: "chicago")
     
     // items for styles
-    var items = ["Original", "Rain Princess", "Wave", "Scream", "Muse", "Udnie", "Candy"]
+    var items = ["Original", "Pointillism", "Starry Night", "Scream", "Muse", "Udnie", "Candy"]
     
     // if the style is applying, if true, show the loader, else hide the loader
     var isProcessing : Bool = false {
@@ -186,10 +186,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.imageView.image = #imageLiteral(resourceName: "chicago")
         case 1:
             cell.lbl.text = items[1]
-            cell.imageView.image = #imageLiteral(resourceName: "rainprincess")
+            cell.imageView.image = #imageLiteral(resourceName: "pointillism")
         case 2:
             cell.lbl.text = items[2]
-            cell.imageView.image = #imageLiteral(resourceName: "wave")
+            cell.imageView.image = #imageLiteral(resourceName: "starrynight")
         case 3:
             cell.lbl.text = items[3]
             cell.imageView.image = #imageLiteral(resourceName: "screamImg")

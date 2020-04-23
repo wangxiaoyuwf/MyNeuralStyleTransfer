@@ -12,8 +12,8 @@ import CoreML
 //xiaoyu: define all of the models
 enum AllModel : String, CaseIterable {
     
-    case princess = "rain_princess"
-    case wave = "wave"
+    case pointllism = "Pointillism"
+    case starrynight = "StarryNight"
     case scream = "FNS-The-Scream"
     case muse = "FNS-La-Muse"
     case udnie = "FNS-Udnie"
@@ -25,16 +25,16 @@ enum AllModel : String, CaseIterable {
         }
         
         switch self {
-        case .princess:
+        case .pointllism:
             return try MLModelProvider(contentsOf: url,
-                                   pixelBufferSize: CGSize(width:256, height:256),
-                                   inputName: "X_content__0",
-                                   outputName: "add_37__0")
-        case .wave:
+                                   pixelBufferSize: CGSize(width:720, height:720),
+                                   inputName: "myInput",
+                                   outputName: "myOutput")
+        case .starrynight:
         return try MLModelProvider(contentsOf: url,
-                               pixelBufferSize: CGSize(width:256, height:256),
-                               inputName: "X_content__0",
-                               outputName: "add_37__0")
+                               pixelBufferSize: CGSize(width:720, height:720),
+                               inputName: "inputImage",
+                               outputName: "outputImage")
         case .scream:
             return try MLModelProvider(contentsOf: url,
                                        pixelBufferSize: CGSize(width:720, height:720),
