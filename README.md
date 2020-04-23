@@ -247,15 +247,15 @@ Put some models on Clould Server, users can download from the Cloud
 Technique : NodeJs
 
 ### WEEK 14(4.27-5.3)
-IOS development : Payment Function
+IOS development : Purchase Function
 
-Fake now(I may do the real function in the future)
+Fake now, I may do the real function in the future(next semester)
 
 ### WEEK 15(5.4-5.10)
 Debug
 
 ### WEEK 16(5.11-5.17)
-Debug
+Try to publish my app to appstore
 
 
 
