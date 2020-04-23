@@ -226,11 +226,13 @@ IOS development : Complete the image transfer function
 IOS development : Re-layout UI
 
 ### WEEK 11(4.6-4.12)
-IOS development : Bottom Different Style's Table function
+IOS development : Style Selector on Bottom
 
 ### WEEK 12(4.13-4.19)
-IOS development : Save and Share Function(Save image to iphone and Share)
-Technique : Social Frame
+IOS development : Save and Share Function
+Save
+Share
+Cancel
 
 ***
 ***
