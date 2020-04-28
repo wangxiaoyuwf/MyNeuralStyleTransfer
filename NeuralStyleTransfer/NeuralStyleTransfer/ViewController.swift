@@ -48,6 +48,23 @@ class ViewController: UIViewController {
         }
     }
     
+    // download model function: url
+    var urlModelCloud = "https://192.168.1.78:3011/public/models/FNS-Candy.mlmodel"
+//    var urlModelCloud = "https://dldir1.qq.com/qqfile/QQforMac/QQ_V6.5.5.dmg"
+//    var urlModelCloud = "https://github.com/wangxiaoyuwf/MyNeuralStyleTransfer/raw/master/NeuralStyleTransfer/NeuralStyleTransfer/FNS-Candy.mlmodel"
+    
+    // download model function: session
+    private var session: URLSession? = nil
+    
+    // download model function: response data
+    private var responseData: Data? = nil
+    
+    // create a DownloadUtil instance
+    var downloadUtil: DownloadUtil = DownloadUtil()
+    
+    // is candy model download
+    var isCandyDownload: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -67,10 +84,10 @@ class ViewController: UIViewController {
         var errorUtil: Error?
         let startTime = CFAbsoluteTimeGetCurrent()
         
-        //xiaoyu: using asynchronously because prediction may take a few seconds
+        // using asynchronously because prediction may take a few seconds
         DispatchQueue.global().async {
             
-            //xiaoyu: Load model and prediction
+            // Load model and prediction
             do {
                 let modelProvider = try self.selectedModel.modelProvider()
                 outputImage = try modelProvider.prediction(inputImage: input)
@@ -78,7 +95,7 @@ class ViewController: UIViewController {
                 errorUtil = error
             }
             
-            //xiaoyu: give result to main thread
+            // give result to main thread
             DispatchQueue.main.async {
                 if let outputImage = outputImage {
                     completion(outputImage, nil)
@@ -95,7 +112,7 @@ class ViewController: UIViewController {
     }
         
     /*
-     xiaoyu: import image from file system
+     import image from file system
      **/
     @IBAction func importFromFileSystem() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
@@ -109,7 +126,7 @@ class ViewController: UIViewController {
     }
         
     /*
-     xiaoyu: get image from camera
+     get image from camera
      **/
     @IBAction func camera(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -118,13 +135,13 @@ class ViewController: UIViewController {
             self.cameraPicker.allowsEditing = true
             self.present(self.cameraPicker, animated: true)
         } else {
-            print("Camera not available")
+            print("Camera not available!")
         }
         
     }
     
     /*
-     xiaoyu: apply action
+     apply style action
      **/
     func applyStyle() {
         guard let image = self.imageView.image else {
@@ -144,80 +161,6 @@ class ViewController: UIViewController {
                 print(ErrorUtil.unknown)
             }
         }
-    }
-}
-
-/*
- xiaoyu: Image Picker UI Controller
- **/
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.selectedImage = pickedImage
-            self.imageView.image = pickedImage
-            self.imageView.backgroundColor = .clear
-        }
-        self.dismiss(animated: true)
-    }
-}
-
-/*
- xiaoyu: CollectionView
- **/
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    // for UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
-    }
-
-    // for each cell
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("collectionview...")
-        let cell:StyleCollectionViewCell =
-            collectionView.dequeueReusableCell(withReuseIdentifier: "filter", for: indexPath)
-            as! StyleCollectionViewCell
-        switch indexPath.item {
-        case 0:
-            cell.lbl.text = items[0]
-            cell.imageView.image = #imageLiteral(resourceName: "chicago")
-        case 1:
-            cell.lbl.text = items[1]
-            cell.imageView.image = #imageLiteral(resourceName: "pointillism")
-        case 2:
-            cell.lbl.text = items[2]
-            cell.imageView.image = #imageLiteral(resourceName: "starrynight")
-        case 3:
-            cell.lbl.text = items[3]
-            cell.imageView.image = #imageLiteral(resourceName: "screamImg")
-        case 4:
-            cell.lbl.text = items[4]
-            cell.imageView.image = #imageLiteral(resourceName: "museImg")
-        case 5:
-            cell.lbl.text = items[5]
-            cell.imageView.image = #imageLiteral(resourceName: "Udanie")
-        case 6:
-            cell.lbl.text = items[6]
-            cell.imageView.image = #imageLiteral(resourceName: "candy")
-        default:
-            cell.lbl.text = ""
-        }
-        return cell
-    }
-
-    /*
-     for UICollectionViewDelegate
-     **/
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.imageView.image = self.selectedImage
-        if(indexPath.item == 0){
-            return;
-        }
-        self.selectedModel = AllModel.allCases[indexPath.item - 1]
-        applyStyle()
     }
     
     /*
@@ -253,9 +196,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
      share to the social media action
      **/
     func shareSocialMedia(){
-        // save image first when you share the image
+        // save image before you share the image
         saveImage()
-        
         // share function
         let activityVC = UIActivityViewController(activityItems: [self.imageView.image!, "Share Image"], applicationActivities: nil)
         activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
@@ -269,5 +211,183 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         self.present(activityVC, animated: true, completion: nil)
     }
+}
+
+/*
+ Image Picker UI Controller
+ **/
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)
+    }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.selectedImage = pickedImage
+            self.imageView.image = pickedImage
+            self.imageView.backgroundColor = .clear
+        }
+        self.dismiss(animated: true)
+    }
+}
+
+/*
+ CollectionView
+ **/
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    // for UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.items.count
+    }
+
+    /*
+     for each cell
+     **/
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell:StyleCollectionViewCell =
+            collectionView.dequeueReusableCell(withReuseIdentifier: "filter", for: indexPath)
+            as! StyleCollectionViewCell
+        switch indexPath.item {
+        case 0:
+            cell.lbl.text = items[0]
+            cell.imageView.image = #imageLiteral(resourceName: "chicago")
+        case 1:
+            cell.lbl.text = items[1]
+            cell.imageView.image = #imageLiteral(resourceName: "pointillism")
+        case 2:
+            cell.lbl.text = items[2]
+            cell.imageView.image = #imageLiteral(resourceName: "starrynight")
+        case 3:
+            cell.lbl.text = items[3]
+            cell.imageView.image = #imageLiteral(resourceName: "screamImg")
+        case 4:
+            cell.lbl.text = items[4]
+            cell.imageView.image = #imageLiteral(resourceName: "museImg")
+        case 5:
+            cell.lbl.text = items[5]
+            cell.imageView.image = #imageLiteral(resourceName: "Udanie")
+        case 6:
+            cell.lbl.text = items[6]
+            if !isCandyDownload{
+                cell.imageView.image = #imageLiteral(resourceName: "candydownload")
+            }else{
+                cell.imageView.image = #imageLiteral(resourceName: "candy")
+            }
+        default:
+            cell.lbl.text = ""
+        }
+        return cell
+    }
+
+    /*
+     for UICollectionViewDelegate
+     **/
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("collectionview, indexPath:\(indexPath)")
+//        let cell:StyleCollectionViewCell =
+//        collectionView.dequeueReusableCell(withReuseIdentifier: "filter", for: indexPath)
+//        as! StyleCollectionViewCell
+        self.imageView.image = self.selectedImage
+        self.selectedModel = AllModel.allCases[indexPath.item - 1]
+        if indexPath.item == 0 {
+            return;
+        }
+        if indexPath.item == 6 {
+            // xiaoyu: (modify it later), if the Candy Model file path is exist, download start
+//            let filePath = downloadUtil.modelFilePath(filename: "FNS-Candy.mlmodelc")
+//            print("collectionView, filePath:\(filePath)")
+//            let fileManager = FileManager.default
+//            if !fileManager.fileExists(atPath: filePath) {
+            // xiaoyu: (modify it later), if the Candy Model file path is exist, download end
+
+            if !isCandyDownload{
+                print("downloadMoedel...")
+                downloadModel(url: self.urlModelCloud)
+                isCandyDownload = true
+                collectionView.reloadItems(at: [indexPath])
+                return
+            }
+        }
+        applyStyle()
+    }
+}
+
+/*
+ URLSession for download models function
+ **/
+extension ViewController: URLSessionDataDelegate{
+        
+    /*
+     when receive the response from the server, completionHandler(.allow) is to receive
+     the data
+     **/
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+        print("response start...")
+        completionHandler(.allow)
+    }
+    
+    /*
+     receive data
+     **/
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        print("receive data...")
+        if self.responseData == nil{
+            self.responseData = Data.init()
+        }
+        self.responseData?.append(data)
+        downloadUtil.saveData(data: self.responseData!, filename: "/FNS-Candy.mlmodel")
+    }
+    
+    /*
+     download done
+     **/
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        print("download done...")
+//        downloadUtil.saveData(data: self.responseData!, filename: "/FNS-Candy.mlmodel")
+
+        // when we finish download operation, compile and save to the permanent location
+        downloadUtil.compileToPermanentLocation(filename: "/FNS-Candy.mlmodel")
+        DispatchQueue.main.async {
+            self.updateUI()
+            self.session?.invalidateAndCancel()
+            self.session = nil
+            self.responseData = nil
+        }
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        print("urlsession, ignore the certi...")
+        if let aTrust = challenge.protectionSpace.serverTrust {
+            completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: aTrust))
+        }
+    }
+    /*
+     download function
+     **/
+    func downloadModel(url: String) {
+        guard self.session == nil else{
+            print("downloading!")
+            return
+        }
+        // create the request
+        var urlRequest = URLRequest(url: URL(string: url)!)
+        urlRequest.httpMethod = "GET"
+        // set for ignore the cache
+        urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
+        // session
+        session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        // create the task
+        let downloadTask = session?.dataTask(with: urlRequest)
+        // download
+        downloadTask?.resume()
+    }
+    
+    /*
+     update ui for download operation
+     **/
+    func updateUI(){
+        // update download progress
+        
+        
+    }
 }

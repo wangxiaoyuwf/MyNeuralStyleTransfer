@@ -9,7 +9,7 @@
 import UIKit
 import CoreML
 
-//xiaoyu: define all of the models
+// define all of the models
 enum AllModel : String, CaseIterable {
     
     case pointllism = "Pointillism"
@@ -20,41 +20,49 @@ enum AllModel : String, CaseIterable {
     case candy = "FNS-Candy"
     
     func modelProvider() throws -> MLModelProvider {
-        guard let url = Bundle.main.url(forResource: self.rawValue, withExtension:"mlmodelc") else {
-            throw ErrorUtil.assetPathError
+        let downLoadUtil: DownloadUtil = DownloadUtil()
+        print("which model:\(self.rawValue)")
+        var url = URL(string: downLoadUtil.modelFilePath(filename: "FNS-Candy.mlmodelc"))!
+        if(self.rawValue != "FNS-Candy"){
+           url = Bundle.main.url(forResource: self.rawValue, withExtension:"mlmodelc")!
         }
+        print("ModelProvider, url:\(url)")
+//        guard let url = Bundle.main.url(forResource: self.rawValue, withExtension:"mlmodelc")
+//        else {
+//            throw ErrorUtil.assetPathError
+//        }
         
         switch self {
         case .pointllism:
             return try MLModelProvider(contentsOf: url,
-                                   pixelBufferSize: CGSize(width:720, height:720),
-                                   inputName: "myInput",
-                                   outputName: "myOutput")
+                                pixelBufferSize: CGSize(width:720, height:720),
+                                inputName: "myInput",
+                                outputName: "myOutput")
         case .starrynight:
-        return try MLModelProvider(contentsOf: url,
-                               pixelBufferSize: CGSize(width:720, height:720),
-                               inputName: "inputImage",
-                               outputName: "outputImage")
+            return try MLModelProvider(contentsOf: url,
+                                pixelBufferSize: CGSize(width:720, height:720),
+                                inputName: "inputImage",
+                                outputName: "outputImage")
         case .scream:
             return try MLModelProvider(contentsOf: url,
-                                       pixelBufferSize: CGSize(width:720, height:720),
-                                       inputName: "inputImage",
-                                       outputName: "outputImage")
+                                pixelBufferSize: CGSize(width:720, height:720),
+                                inputName: "inputImage",
+                                outputName: "outputImage")
         case .muse:
-        return try MLModelProvider(contentsOf: url,
-                                   pixelBufferSize: CGSize(width:720, height:720),
-                                   inputName: "inputImage",
-                                   outputName: "outputImage")
+            return try MLModelProvider(contentsOf: url,
+                                pixelBufferSize: CGSize(width:720, height:720),
+                                inputName: "inputImage",
+                                outputName: "outputImage")
         case .udnie:
-        return try MLModelProvider(contentsOf: url,
-                                   pixelBufferSize: CGSize(width:720, height:720),
-                                   inputName: "inputImage",
-                                   outputName: "outputImage")
+            return try MLModelProvider(contentsOf: url,
+                                pixelBufferSize: CGSize(width:720, height:720),
+                                inputName: "inputImage",
+                                outputName: "outputImage")
         case .candy:
-        return try MLModelProvider(contentsOf: url,
-                                   pixelBufferSize: CGSize(width:720, height:720),
-                                   inputName: "inputImage",
-                                   outputName: "outputImage")
+            return try MLModelProvider(contentsOf: url,
+                                pixelBufferSize: CGSize(width:720, height:720),
+                                inputName: "inputImage",
+                                outputName: "outputImage")
         }
     }
 }
