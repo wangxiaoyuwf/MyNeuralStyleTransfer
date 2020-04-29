@@ -5,7 +5,6 @@
 
 2. find some pre-trained model
 
-
 ### WEEK 3 (2.10-2.16)
 #### step 0: set the environment on ubuntu
 
@@ -238,19 +237,27 @@ Share
 Cancel
 
 ### WEEK 13(4.20-4.26)
-***IOS development : Download Model Function***
+IOS development : Download Model Function
 
-***Put some models on Clould Server, users can download from the Cloud***
+Put some models on Clould Server, users can download from the Cloud
 
-***Technique : NodeJs***
+1.build server, and do a simple upload webpage
+
+Technique : NodeJs
+
+2.download from the server and compile
+
+Technique: URLSession
 
 ### WEEK 14(4.27-5.3)
-IOS development : Purchase Function
+***IOS development : Purchase Function***
 
-Fake now, I may do the real function in the future(next semester)
+***Fake now, Just do User Interface. I may do the real function in the future(next semester)***
 
 ### WEEK 15(5.4-5.10)
-Debug
+Localization of string function
+
+Optimize User Interface
 
 ### WEEK 16(5.11-5.17)
 Try to publish my app to appstore
