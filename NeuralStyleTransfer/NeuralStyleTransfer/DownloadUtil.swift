@@ -32,23 +32,30 @@ class DownloadUtil: NSObject {
         let filePath = dataFilePath(filename: filename)
         // get the model url by downloaded file path
         let modelUrl: URL = URL.init(fileURLWithPath: filePath)
-        // compile the model and return the compiled model url
-        let compiledUrl = try! MLModel.compileModel(at: modelUrl)
-        print("compileToPermanentLocation, compiledUrl:\(compiledUrl)")
+        print("compileToPermanentLocation, modelUrl:\(modelUrl)")
+        var compiledUrl: URL?
+        do{
+            // compile the model and return the compiled model url
+            compiledUrl = try MLModel.compileModel(at: modelUrl)
+            print("compileToPermanentLocation, compiledUrl:\(compiledUrl!)")
+        }catch{
+            print("Error: \(error.localizedDescription)")
+            return
+        }
         
         let fileManager = FileManager.default
         // get the directory that was used to store the compiled model
         let appfilepath = appFilePath()
         let appfilepathUrl = URL(string: appfilepath)
         // get the final model path
-        let permanentUrl = appfilepathUrl!.appendingPathComponent(compiledUrl.lastPathComponent)
+        let permanentUrl = appfilepathUrl!.appendingPathComponent(compiledUrl!.lastPathComponent)
         print("compileToPermanentLocation, permanentUrl:\(permanentUrl.absoluteString)")
         do {
             // if the file exists, replace it. Otherwise, copy the file to the destination.
             if fileManager.fileExists(atPath: permanentUrl.absoluteString) {
-                _ = try fileManager.replaceItemAt(permanentUrl, withItemAt: compiledUrl)
+                _ = try fileManager.replaceItemAt(permanentUrl, withItemAt: compiledUrl!)
             } else {
-                try fileManager.copyItem(at: compiledUrl, to: permanentUrl)
+                try fileManager.copyItem(at: compiledUrl!, to: permanentUrl)
             }
         } catch {
             print("Error during copy: \(error.localizedDescription)")

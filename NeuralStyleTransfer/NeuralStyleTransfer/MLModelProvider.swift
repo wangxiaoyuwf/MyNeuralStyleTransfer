@@ -22,44 +22,51 @@ enum AllModel : String, CaseIterable {
     func modelProvider() throws -> MLModelProvider {
         let downLoadUtil: DownloadUtil = DownloadUtil()
         print("which model:\(self.rawValue)")
-        var url = URL(string: downLoadUtil.modelFilePath(filename: "FNS-Candy.mlmodelc"))!
-        if(self.rawValue != "FNS-Candy"){
-           url = Bundle.main.url(forResource: self.rawValue, withExtension:"mlmodelc")!
+        
+        var url:URL?
+   
+        switch self {
+        case .candy:
+            guard let urlcandy = URL(string: downLoadUtil.modelFilePath(filename: "FNS-Candy.mlmodelc")) else{
+                throw ErrorUtil.assetPathError
+            }
+            url = urlcandy
+        default:
+            guard let urlother = Bundle.main.url(forResource: self.rawValue, withExtension:"mlmodelc")
+            else {
+                throw ErrorUtil.assetPathError
+            }
+            url = urlother
         }
-        print("ModelProvider, url:\(url)")
-//        guard let url = Bundle.main.url(forResource: self.rawValue, withExtension:"mlmodelc")
-//        else {
-//            throw ErrorUtil.assetPathError
-//        }
         
         switch self {
         case .pointllism:
-            return try MLModelProvider(contentsOf: url,
+            return try MLModelProvider(contentsOf: url!,
                                 pixelBufferSize: CGSize(width:720, height:720),
                                 inputName: "myInput",
                                 outputName: "myOutput")
         case .starrynight:
-            return try MLModelProvider(contentsOf: url,
+            return try MLModelProvider(contentsOf: url!,
                                 pixelBufferSize: CGSize(width:720, height:720),
                                 inputName: "inputImage",
                                 outputName: "outputImage")
         case .scream:
-            return try MLModelProvider(contentsOf: url,
+            return try MLModelProvider(contentsOf: url!,
                                 pixelBufferSize: CGSize(width:720, height:720),
                                 inputName: "inputImage",
                                 outputName: "outputImage")
         case .muse:
-            return try MLModelProvider(contentsOf: url,
+            return try MLModelProvider(contentsOf: url!,
                                 pixelBufferSize: CGSize(width:720, height:720),
                                 inputName: "inputImage",
                                 outputName: "outputImage")
         case .udnie:
-            return try MLModelProvider(contentsOf: url,
+            return try MLModelProvider(contentsOf: url!,
                                 pixelBufferSize: CGSize(width:720, height:720),
                                 inputName: "inputImage",
                                 outputName: "outputImage")
         case .candy:
-            return try MLModelProvider(contentsOf: url,
+            return try MLModelProvider(contentsOf: url!,
                                 pixelBufferSize: CGSize(width:720, height:720),
                                 inputName: "inputImage",
                                 outputName: "outputImage")

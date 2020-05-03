@@ -341,7 +341,7 @@ extension ViewController: URLSessionDataDelegate{
     /*
      download done
      **/
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    internal func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?){
         print("download done...")
 //        downloadUtil.saveData(data: self.responseData!, filename: "/FNS-Candy.mlmodel")
 
