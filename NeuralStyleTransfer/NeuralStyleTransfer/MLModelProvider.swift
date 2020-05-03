@@ -25,9 +25,11 @@ enum AllModel : String, CaseIterable {
         
         var url:URL?
    
+        // set the URL, if it is download, get from document folder, else, get from
+        // .app folder
         switch self {
         case .candy:
-            guard let urlcandy = URL(string: downLoadUtil.modelFilePath(filename: "FNS-Candy.mlmodelc")) else{
+            guard let urlcandy = URL(string: downLoadUtil.modelFilePath(filename: "\(self.rawValue).mlmodelc")) else{
                 throw ErrorUtil.assetPathError
             }
             url = urlcandy
@@ -39,6 +41,7 @@ enum AllModel : String, CaseIterable {
             url = urlother
         }
         
+        // set model
         switch self {
         case .pointllism:
             return try MLModelProvider(contentsOf: url!,

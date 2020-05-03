@@ -34,10 +34,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chicago" translatesAutoresizingMaskIntoConstraints="NO" id="Ha2-Oo-VNH">
                                 <rect key="frame" x="0.0" y="88" width="414" height="636"/>
                             </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tzW-Uo-3m7">
-                                <rect key="frame" x="180" y="300" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pmm-Lv-9QA">
                                 <rect key="frame" x="0.0" y="732" width="414" height="130"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -59,13 +55,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJd-nI-waa">
-                                                    <rect key="frame" x="7" y="100" width="87" height="24"/>
+                                                    <rect key="frame" x="0.0" y="100" width="100" height="30"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yqh-Pl-j0F">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="93"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yqh-Pl-j0F">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Yqh-Pl-j0F" secondAttribute="height" multiplier="1:1" id="die-3i-oJE" userLabel="aspect = 1:1"/>
                                                     </constraints>
@@ -73,13 +69,13 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="sJd-nI-waa" firstAttribute="top" secondItem="Yqh-Pl-j0F" secondAttribute="bottom" constant="7" id="02W-BL-HgK" userLabel="Lbl.top = Image View.bottom"/>
-                                            <constraint firstItem="Yqh-Pl-j0F" firstAttribute="top" secondItem="gyh-nQ-BtS" secondAttribute="top" constant="8" id="Fyg-eV-BZk" userLabel="Image View.top = top"/>
-                                            <constraint firstItem="sJd-nI-waa" firstAttribute="leading" secondItem="gyh-nQ-BtS" secondAttribute="leading" constant="7" id="a7H-wm-44q" userLabel="Lbl.leading = leading"/>
-                                            <constraint firstAttribute="trailing" secondItem="sJd-nI-waa" secondAttribute="trailing" constant="6" id="cUv-pf-MiW" userLabel="trailing = Lbl.trailing"/>
-                                            <constraint firstItem="Yqh-Pl-j0F" firstAttribute="leading" secondItem="gyh-nQ-BtS" secondAttribute="leading" constant="8" id="eei-8a-AUa" userLabel="Image View.leading = leading"/>
-                                            <constraint firstAttribute="trailing" secondItem="Yqh-Pl-j0F" secondAttribute="trailing" constant="7" id="flU-x6-zI6" userLabel="trailing = Image View.trailing"/>
-                                            <constraint firstAttribute="bottom" secondItem="sJd-nI-waa" secondAttribute="bottom" constant="6" id="jcb-QS-PzN" userLabel="bottom = Lbl.bottom"/>
+                                            <constraint firstItem="sJd-nI-waa" firstAttribute="top" secondItem="Yqh-Pl-j0F" secondAttribute="bottom" id="02W-BL-HgK" userLabel="Lbl.top = Image View.bottom"/>
+                                            <constraint firstItem="Yqh-Pl-j0F" firstAttribute="top" secondItem="gyh-nQ-BtS" secondAttribute="top" id="Fyg-eV-BZk" userLabel="Image View.top = top"/>
+                                            <constraint firstItem="sJd-nI-waa" firstAttribute="leading" secondItem="gyh-nQ-BtS" secondAttribute="leading" id="a7H-wm-44q" userLabel="Lbl.leading = leading"/>
+                                            <constraint firstAttribute="trailing" secondItem="sJd-nI-waa" secondAttribute="trailing" id="cUv-pf-MiW" userLabel="trailing = Lbl.trailing"/>
+                                            <constraint firstItem="Yqh-Pl-j0F" firstAttribute="leading" secondItem="gyh-nQ-BtS" secondAttribute="leading" id="eei-8a-AUa" userLabel="Image View.leading = leading"/>
+                                            <constraint firstAttribute="trailing" secondItem="Yqh-Pl-j0F" secondAttribute="trailing" id="flU-x6-zI6" userLabel="trailing = Image View.trailing"/>
+                                            <constraint firstAttribute="bottom" secondItem="sJd-nI-waa" secondAttribute="bottom" id="jcb-QS-PzN" userLabel="bottom = Lbl.bottom"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="Yqh-Pl-j0F" id="TPQ-ii-XeL"/>
@@ -92,6 +88,10 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="uhh-kn-Pcy"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tzW-Uo-3m7">
+                                <rect key="frame" x="186" y="430" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>

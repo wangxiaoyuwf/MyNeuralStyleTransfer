@@ -17,9 +17,7 @@ class DownloadUtil: NSObject {
     func saveData(data: Data, filename: String) {
         let nsMutableData = NSMutableData()
         nsMutableData.append(data)
-        print("saveData, path:\(dataFilePath(filename: filename))")
         // write to document file
-        // xiaoyu: 下载写到document还有问题，后面需要改
         nsMutableData.write(toFile: dataFilePath(filename: filename), atomically: true)
     }
     
@@ -27,20 +25,18 @@ class DownloadUtil: NSObject {
      compile the data of model and move it to a permanent location
      https://developer.apple.com/documentation/coreml/core_ml_api/downloading_and_compiling_a_model_on_the_user_s_device
      **/
-    func compileToPermanentLocation(filename: String){
+    func compileToPermanentLocation(filename: String) -> Bool{
         // get downloaded file path
         let filePath = dataFilePath(filename: filename)
         // get the model url by downloaded file path
         let modelUrl: URL = URL.init(fileURLWithPath: filePath)
-        print("compileToPermanentLocation, modelUrl:\(modelUrl)")
         var compiledUrl: URL?
         do{
             // compile the model and return the compiled model url
             compiledUrl = try MLModel.compileModel(at: modelUrl)
-            print("compileToPermanentLocation, compiledUrl:\(compiledUrl!)")
         }catch{
-            print("Error: \(error.localizedDescription)")
-            return
+            print("Error during compile \(error.localizedDescription)")
+            return false
         }
         
         let fileManager = FileManager.default
@@ -59,7 +55,9 @@ class DownloadUtil: NSObject {
             }
         } catch {
             print("Error during copy: \(error.localizedDescription)")
+            return false
         }
+        return true
     }
     
     /*

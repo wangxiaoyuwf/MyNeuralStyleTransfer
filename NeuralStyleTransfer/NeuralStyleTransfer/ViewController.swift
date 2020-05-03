@@ -49,9 +49,7 @@ class ViewController: UIViewController {
     }
     
     // download model function: url
-    var urlModelCloud = "https://192.168.1.78:3011/public/models/FNS-Candy.mlmodel"
-//    var urlModelCloud = "https://dldir1.qq.com/qqfile/QQforMac/QQ_V6.5.5.dmg"
-//    var urlModelCloud = "https://github.com/wangxiaoyuwf/MyNeuralStyleTransfer/raw/master/NeuralStyleTransfer/NeuralStyleTransfer/FNS-Candy.mlmodel"
+    var urlCandyModelCloud = "https://192.168.1.78:3011/public/models/FNS-Candy.mlmodel"
     
     // download model function: session
     private var session: URLSession? = nil
@@ -62,8 +60,14 @@ class ViewController: UIViewController {
     // create a DownloadUtil instance
     var downloadUtil: DownloadUtil = DownloadUtil()
     
-    // is candy model download
-    var isCandyDownload: Bool = false
+    // candy download status
+    var candyDownloadStatus: Int = 0
+        
+    // download model
+    var downloadModel:String = "FNS-Candy"
+    
+    // ViewController
+    var collectionView: UICollectionView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +90,6 @@ class ViewController: UIViewController {
         
         // using asynchronously because prediction may take a few seconds
         DispatchQueue.global().async {
-            
             // Load model and prediction
             do {
                 let modelProvider = try self.selectedModel.modelProvider()
@@ -95,7 +98,7 @@ class ViewController: UIViewController {
                 errorUtil = error
             }
             
-            // give result to main thread
+            // give the result to main thread
             DispatchQueue.main.async {
                 if let outputImage = outputImage {
                     completion(outputImage, nil)
@@ -244,6 +247,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
      for each cell
      **/
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        self.collectionView = collectionView
         let cell:StyleCollectionViewCell =
             collectionView.dequeueReusableCell(withReuseIdentifier: "filter", for: indexPath)
             as! StyleCollectionViewCell
@@ -268,10 +272,13 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.imageView.image = #imageLiteral(resourceName: "Udanie")
         case 6:
             cell.lbl.text = items[6]
-            if !isCandyDownload{
+            if candyDownloadStatus == 0{
                 cell.imageView.image = #imageLiteral(resourceName: "candydownload")
+            }else if candyDownloadStatus == 1{
+                cell.imageView.image = #imageLiteral(resourceName: "candydownloading")
             }else{
                 cell.imageView.image = #imageLiteral(resourceName: "candy")
+                self.view.makeToast("Download Done!")
             }
         default:
             cell.lbl.text = ""
@@ -283,15 +290,13 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
      for UICollectionViewDelegate
      **/
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("collectionview, indexPath:\(indexPath)")
-//        let cell:StyleCollectionViewCell =
-//        collectionView.dequeueReusableCell(withReuseIdentifier: "filter", for: indexPath)
-//        as! StyleCollectionViewCell
+        self.collectionView = collectionView
         self.imageView.image = self.selectedImage
-        self.selectedModel = AllModel.allCases[indexPath.item - 1]
         if indexPath.item == 0 {
             return;
         }
+        self.selectedModel = AllModel.allCases[indexPath.item - 1]
+        // item 6->candy style->need to download first
         if indexPath.item == 6 {
             // xiaoyu: (modify it later), if the Candy Model file path is exist, download start
 //            let filePath = downloadUtil.modelFilePath(filename: "FNS-Candy.mlmodelc")
@@ -299,12 +304,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 //            let fileManager = FileManager.default
 //            if !fileManager.fileExists(atPath: filePath) {
             // xiaoyu: (modify it later), if the Candy Model file path is exist, download end
-
-            if !isCandyDownload{
-                print("downloadMoedel...")
-                downloadModel(url: self.urlModelCloud)
-                isCandyDownload = true
-                collectionView.reloadItems(at: [indexPath])
+            downloadModel = "FNS-Candy"
+            if candyDownloadStatus == 0{
+                self.downloadModel(url: self.urlCandyModelCloud)
                 return
             }
         }
@@ -316,7 +318,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
  URLSession for download models function
  **/
 extension ViewController: URLSessionDataDelegate{
-        
     /*
      when receive the response from the server, completionHandler(.allow) is to receive
      the data
@@ -331,11 +332,17 @@ extension ViewController: URLSessionDataDelegate{
      **/
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         print("receive data...")
+        candyDownloadStatus = 1
         if self.responseData == nil{
             self.responseData = Data.init()
         }
         self.responseData?.append(data)
-        downloadUtil.saveData(data: self.responseData!, filename: "/FNS-Candy.mlmodel")
+        downloadUtil.saveData(data: self.responseData!, filename: "/\(downloadModel).mlmodel")
+        
+        // give the result to main thread
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
     }
     
     /*
@@ -343,30 +350,47 @@ extension ViewController: URLSessionDataDelegate{
      **/
     internal func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?){
         print("download done...")
-//        downloadUtil.saveData(data: self.responseData!, filename: "/FNS-Candy.mlmodel")
-
         // when we finish download operation, compile and save to the permanent location
-        downloadUtil.compileToPermanentLocation(filename: "/FNS-Candy.mlmodel")
+        // if there are more downloaded models except candy, just add case in switch
+        let isSuccess = downloadUtil.compileToPermanentLocation(filename: "/\(downloadModel).mlmodel")
+        if isSuccess {
+            switch downloadModel {
+            default:
+                candyDownloadStatus = 2
+            }
+        }else{
+            switch downloadModel {
+            default:
+                candyDownloadStatus = 0
+            }
+        }
+        
+        // give the result to main thread
         DispatchQueue.main.async {
-            self.updateUI()
+            self.collectionView?.reloadData()
             self.session?.invalidateAndCancel()
             self.session = nil
             self.responseData = nil
         }
     }
     
+    /*
+     for certification
+     **/
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         print("urlsession, ignore the certi...")
         if let aTrust = challenge.protectionSpace.serverTrust {
             completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: aTrust))
         }
     }
+    
     /*
      download function
      **/
     func downloadModel(url: String) {
+        print("downloadModel...")
         guard self.session == nil else{
-            print("downloading!")
+            print("You are downloading!")
             return
         }
         // create the request
@@ -382,12 +406,5 @@ extension ViewController: URLSessionDataDelegate{
         downloadTask?.resume()
     }
     
-    /*
-     update ui for download operation
-     **/
-    func updateUI(){
-        // update download progress
-        
-        
-    }
+
 }
