@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     var selectedImage = UIImage(named: "chicago")
     
     // items for styles
-    var items = ["Original", "Pointillism", "Starry Night", "Scream", "Muse", "Udnie", "Candy"]
+    var items = [NSLocalizedString("original", comment: ""), NSLocalizedString("pointillism", comment: ""), NSLocalizedString("starry_night", comment: ""), NSLocalizedString("scream", comment: ""), NSLocalizedString("muse", comment: ""), NSLocalizedString("udnie", comment: ""), NSLocalizedString("candy", comment: ""), NSLocalizedString("wave", comment: "")]
     
     // if the style is applying, if true, show the loader, else hide the loader
     var isProcessing : Bool = false {
@@ -170,13 +170,13 @@ class ViewController: UIViewController {
      show popview on the bottom when the process of applying style was finished
      **/
     func showPopView(){
-        let alert = UIAlertController(title: "action", message: "please choose one action", preferredStyle: .actionSheet)
-        let cancel = UIAlertAction(title: "Cancel", style:.default, handler: nil)
-        let save = UIAlertAction(title: "Save", style: .default, handler: {
+        let alert = UIAlertController(title: NSLocalizedString("action", comment: ""), message: NSLocalizedString("please_choose_one_action", comment: ""), preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: NSLocalizedString("cancle", comment: ""), style:.default, handler: nil)
+        let save = UIAlertAction(title: NSLocalizedString("save", comment: ""), style: .default, handler: {
             ACTION in
             self.saveImage()
         })
-        let share = UIAlertAction(title: "Share", style: .default, handler: {
+        let share = UIAlertAction(title: NSLocalizedString("share", comment: ""), style: .default, handler: {
             ACTION in
             self.shareSocialMedia()
         })
@@ -192,7 +192,8 @@ class ViewController: UIViewController {
     func saveImage(){
         let image = self.imageView.image!
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        self.view.makeToast("Save Image Success!", duration: 3.0, position: .center)
+        
+        self.view.makeToast(NSLocalizedString("save_image_success", comment: ""), duration: 3.0, position: .center)
     }
     
     /*
@@ -202,14 +203,14 @@ class ViewController: UIViewController {
         // save image before you share the image
         saveImage()
         // share function
-        let activityVC = UIActivityViewController(activityItems: [self.imageView.image!, "Share Image"], applicationActivities: nil)
+        let activityVC = UIActivityViewController(activityItems: [self.imageView.image!, NSLocalizedString("share_image", comment: "")], applicationActivities: nil)
         activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
             if error != nil {
                 self.view.makeToast("Error:\(error!.localizedDescription)")
                 return
             }
             if completed {
-                self.view.makeToast("Share Successful!")
+                self.view.makeToast(NSLocalizedString("share_successful", comment: ""))
             }
         }
         self.present(activityVC, animated: true, completion: nil)
@@ -278,8 +279,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 cell.imageView.image = #imageLiteral(resourceName: "candydownloading")
             }else{
                 cell.imageView.image = #imageLiteral(resourceName: "candy")
-                self.view.makeToast("Download Done!")
+                self.view.makeToast(NSLocalizedString("download_done", comment: ""))
             }
+        case 7:
+            cell.lbl.text = items[7]
+            cell.imageView.image = #imageLiteral(resourceName: "wave")
         default:
             cell.lbl.text = ""
         }
@@ -293,7 +297,12 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         self.collectionView = collectionView
         self.imageView.image = self.selectedImage
         if indexPath.item == 0 {
-            return;
+            return
+        }
+        if indexPath.item == 7 {
+            // xiaoyu: 跳到付款界面
+            print("payment function!")
+            return
         }
         self.selectedModel = AllModel.allCases[indexPath.item - 1]
         // item 6->candy style->need to download first

@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  NeuralStyleTransfer
+
+  Created by Xiaoyu Wang on 5/3/20.
+  Copyright © 2020 Xiaoyu Wang. All rights reserved.
+*/
+"save_image_success" = "Save Image Success!";
+"share_successful" = "Share Successful!";
+"share_image" = "Share Image";
+"download_done" = "Download Done!";
+"action" = "action";
+"please_choose_one_action" = "Please choose one action";
+"cancle" = "Cancel";
+"save" = "Save";
+"share" = "Share";
+"original" = "Original";
+"pointillism" = "Pointillism";
+"starry_night" = "Starry Night";
+"scream" = "Scream";
+"muse" = "La Muse";
+"udnie" = "Udnie";
+"candy" = "Candy";
+"wave" = "Wave";
+
+
+
