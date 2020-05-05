@@ -28,6 +28,7 @@
 		F0E233BA241D549B001C2A50 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E233B9241D549B001C2A50 /* UIImage+Resize.swift */; };
 		F0E233BC241D54BB001C2A50 /* UIImage+CoreML.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E233BB241D54BB001C2A50 /* UIImage+CoreML.swift */; };
 		F0F77175245F96640077D243 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0F77177245F96640077D243 /* Localizable.strings */; };
+		F0F7717D246105D70077D243 /* PaymentControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F7717C246105D70077D243 /* PaymentControllerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		F0F77174245F96300077D243 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F0F77176245F96640077D243 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F0F77179245F9CB70077D243 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		F0F7717B246103320077D243 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		F0F7717C246105D70077D243 /* PaymentControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentControllerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,7 @@
 				F0E233B9241D549B001C2A50 /* UIImage+Resize.swift */,
 				F0E233BB241D54BB001C2A50 /* UIImage+CoreML.swift */,
 				F0F77177245F96640077D243 /* Localizable.strings */,
+				F0F7717C246105D70077D243 /* PaymentControllerViewController.swift */,
 			);
 			path = NeuralStyleTransfer;
 			sourceTree = "<group>";
@@ -354,6 +358,7 @@
 				F0588642243815F100905B2A /* FNS-Udnie.mlmodel in Sources */,
 				F0E23386241B3204001C2A50 /* ViewController.swift in Sources */,
 				F0E233B6241D5447001C2A50 /* MLModelProvider.swift in Sources */,
+				F0F7717D246105D70077D243 /* PaymentControllerViewController.swift in Sources */,
 				F0E233BC241D54BB001C2A50 /* UIImage+CoreML.swift in Sources */,
 				F0ABBF7E242B139200084C40 /* FNS-La-Muse.mlmodel in Sources */,
 				F0893AE1245145EA00C26CFE /* StarryNight.mlmodel in Sources */,
@@ -404,6 +409,7 @@
 			children = (
 				F0E23388241B3204001C2A50 /* Base */,
 				F0F77173245F96300077D243 /* zh-Hans */,
+				F0F7717B246103320077D243 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

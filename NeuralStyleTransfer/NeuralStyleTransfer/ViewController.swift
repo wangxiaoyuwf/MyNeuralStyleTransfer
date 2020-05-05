@@ -302,6 +302,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         if indexPath.item == 7 {
             // xiaoyu: 跳到付款界面
             print("payment function!")
+            self.performSegue(withIdentifier: "ShowPaymentView", sender: "FNS-Candy")
             return
         }
         self.selectedModel = AllModel.allCases[indexPath.item - 1]
