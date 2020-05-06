@@ -143,6 +143,10 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func saveShare(_ sender: UIBarButtonItem) {
+        // show the pop view on the bottom
+        self.showPopView()
+    }
     /*
      apply style action
      **/
@@ -154,8 +158,6 @@ class ViewController: UIViewController {
         self.isProcessing = true
         self.process(input: image) { filteredImage, error in
             self.isProcessing = false
-            // show the pop view on the bottom
-            self.showPopView()
             if let filteredImage = filteredImage {
                 self.imageView.image = filteredImage
             } else if let error = error {
