@@ -250,17 +250,21 @@ Technique : NodeJs
 Technique: URLSession
 
 ### WEEK 14(4.27-5.3)
-***IOS development : Purchase Function***
+IOS development : Purchase Function
 
-***Fake now, Just do User Interface. I may do the real function in the future(next semester)***
+Fake now, Just do User Interface. I may do the real function in the future(next semester)
 
 ### WEEK 15(5.4-5.10)
-Localization of string function
+Localization of string
 
 Optimize User Interface
 
+Design App Icon
+
+Change the App Name
+
 ### WEEK 16(5.11-5.17)
-Try to publish my app to appstore
+***Try to publish my app to appstore***
 
 
 

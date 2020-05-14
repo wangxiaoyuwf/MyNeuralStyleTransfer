@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     var cameraPicker = UIImagePickerController()
 
     // init default image
-    var selectedImage = UIImage(named: "chicago")
+    var selectedImage = UIImage(named: "normanjlevypark")
     
     // items for styles
     var items = [NSLocalizedString("original", comment: ""), NSLocalizedString("pointillism", comment: ""), NSLocalizedString("starry_night", comment: ""), NSLocalizedString("scream", comment: ""), NSLocalizedString("muse", comment: ""), NSLocalizedString("udnie", comment: ""), NSLocalizedString("candy", comment: ""), NSLocalizedString("wave", comment: "")]
@@ -257,7 +257,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         switch indexPath.item {
         case 0:
             cell.lbl.text = items[0]
-            cell.imageView.image = #imageLiteral(resourceName: "chicago")
+            cell.imageView.image = #imageLiteral(resourceName: "normanjlevypark")
         case 1:
             cell.lbl.text = items[1]
             cell.imageView.image = #imageLiteral(resourceName: "pointillism")
