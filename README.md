@@ -49,15 +49,28 @@
    /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer
 
    Here are details about this project:
-   
+
    Our implementation is based off of a combination of Gatys' A Neural Algorithm of Artistic Style, Johnson's Perceptual Losses for Real-Time Style Transfer and Super-Resolution, and Ulyanov's Instance Normalization.
 
    Our implementation uses TensorFlow to train a fast style transfer network. We use roughly the same transformation network as described in Johnson, except that batch normalization is replaced with Ulyanov's instance normalization, and the scaling/offset of the output tanh layer is slightly different. We use a loss function close to the one described in Gatys, using VGG19 instead of VGG16 and typically using "shallower" layers than in Johnson's implementation (e.g. we use relu1_1 rather than relu1_2). Empirically, this results in larger scale style features in transformations.
 
-3. Download Microsoft COCO dataset, and put it here
+3. We use Microsoft COCO dataset to train it . So we need to Download Microsoft COCO dataset, and put it here
 
    /Users/xiaoyuwang/Documents/train2014
 
+4. Once we set up the enviroment on step 0, we can train it.
+
+   /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/train.sh
+   ```python
+   python style.py --style ./examples/style/wave.jpg \
+   --checkpoint-dir ./ \
+   --train-path /Users/xiaoyuwang/Documents/train2014 \
+   --test ./examples/content/chicago.jpg \
+   --test-dir ./ \
+   --content-weight 1.5e1 \
+   --checkpoint-iterations 1000 \
+   --batch-size 1
+   ```
 
 ### WEEK 4 (2.17-2.23)
 #### step 2: get the output_node_names
