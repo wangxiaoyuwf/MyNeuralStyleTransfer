@@ -54,9 +54,21 @@
 
    Our implementation uses TensorFlow to train a fast style transfer network. We use roughly the same transformation network as described in Johnson, except that batch normalization is replaced with Ulyanov's instance normalization, and the scaling/offset of the output tanh layer is slightly different. We use a loss function close to the one described in Gatys, using VGG19 instead of VGG16 and typically using "shallower" layers than in Johnson's implementation (e.g. we use relu1_1 rather than relu1_2). Empirically, this results in larger scale style features in transformations.
 
-3. We use Microsoft COCO dataset to train it . So we need to Download Microsoft COCO dataset, and put it here
+3. We use Microsoft COCO dataset to train it. So we need to Download Microsoft COCO dataset
+
+   http://msvocds.blob.core.windows.net/coco2014/train2014.zip
+   
+   and put it here
 
    /Users/xiaoyuwang/Documents/train2014
+
+   We also use VGG-199 pre-trained model. So we need to download it
+   
+   http://www.vlfeat.org/matconvnet/models/beta16/imagenet-vgg-verydeep-19.mat
+   
+   and put it here
+
+   /Users/xiaoyuwang/Desktop/capstone/fast-style-transfer/data/imagenet-vgg-verydeep-19.mat
 
 4. Once we set up the enviroment on step 0, we can train it.
 
